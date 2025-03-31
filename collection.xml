@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tickets>
+    <ticket>
+        <id>1</id>
+        <name>inokentii</name>
+        <coordinates>30, 20.0</coordinates>
+        <date>2025-03-31T13:43:26.230405700</date>
+        <price>1999</price>
+        <type>VIP</type>
+        <birthday>2001-01-31T00:00+03:00[Europe/Moscow]</birthday>
+        <height>200</height>
+        <weight>80</weight>
+        <location>1,1.0,1.0</location>
+    </ticket>
+</Tickets>
