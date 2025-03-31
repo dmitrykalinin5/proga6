@@ -1,8 +1,10 @@
 import Collections.CollectionManager;
 import Commands.CommandProcessor;
+import Console.Client;
 import Console.Server;
 import java.util.Deque;
 import java.util.ArrayDeque;
+
 
 /**
  * Главный класс программы, отвечающий за инициализацию и запуск сессий.
@@ -24,10 +26,23 @@ public class Main {
         CommandProcessor commandProcessor = new CommandProcessor(collectionManager, historyDeque);
         collectionManager.setCommandProcessor(commandProcessor);
 
-        // Запуск бесконечного цикла для создания новых сессий
-        while (true) {
+        new Thread(() -> {
             Server server = new Server(collectionManager, historyDeque, commandProcessor);
-            server.run();
+        }).start();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        Client client = new Client(collectionManager, historyDeque, commandProcessor);
+        client.interact();
+
+        // Запуск бесконечного цикла для создания новых сессий
+//        while (true) {
+//            Server server = new Server(collectionManager, historyDeque, commandProcessor);
+//            server.run();
+//        }
     }
 }
