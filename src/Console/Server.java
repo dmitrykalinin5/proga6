@@ -10,7 +10,7 @@ import java.util.Deque;
  * Этот класс управляет процессом работы программы, создавая объект клиента,
  * который обрабатывает ввод пользователя и выполняет соответствующие команды.
  */
-public class Session {
+public class Server {
     private final CollectionManager collectionManager;
     private final Deque<String> historyDeque;
     private final CommandProcessor commandProcessor;
@@ -22,7 +22,7 @@ public class Session {
      * @param historyDeque Очередь команд, предназначенная для хранения истории выполнения.
      * @param commandProcessor Обработчик команд, управляющий процессом выполнения команд.
      */
-    public Session(CollectionManager collectionManager, Deque<String> historyDeque, CommandProcessor commandProcessor) {
+    public Server(CollectionManager collectionManager, Deque<String> historyDeque, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
         this.historyDeque = historyDeque;
         this.commandProcessor = commandProcessor;

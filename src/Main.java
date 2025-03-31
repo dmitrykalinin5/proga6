@@ -1,6 +1,6 @@
 import Collections.CollectionManager;
 import Commands.CommandProcessor;
-import Console.Session;
+import Console.Server;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
@@ -26,8 +26,8 @@ public class Main {
 
         // Запуск бесконечного цикла для создания новых сессий
         while (true) {
-            Session session = new Session(collectionManager, historyDeque, commandProcessor);
-            session.run();
+            Server server = new Server(collectionManager, historyDeque, commandProcessor);
+            server.run();
         }
     }
 }
