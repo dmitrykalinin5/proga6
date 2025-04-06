@@ -6,20 +6,20 @@ import Commands.CommandProcessor;
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
  * Однопоточный сервер, принимающий команды по TCP
  */
 public class Server {
-    private final CollectionManager collectionManager;
-    private final Deque<String> historyDeque;
-    private final CommandProcessor commandProcessor;
+    private static CollectionManager collectionManager = new CollectionManager();
+    private static Deque<String> historyDeque = new ArrayDeque<>();
+    private static CommandProcessor commandProcessor;
 
-    public Server(CollectionManager collectionManager, Deque<String> historyDeque, CommandProcessor commandProcessor) {
-        this.collectionManager = collectionManager;
-        this.historyDeque = historyDeque;
-        this.commandProcessor = commandProcessor;
+    public Server(CollectionManager collectionManager, Deque<String> historyDeque) {
+        Server.collectionManager = collectionManager;
+        Server.historyDeque = historyDeque;
     }
 
     public void run() {
@@ -31,20 +31,19 @@ public class Server {
                      BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                      PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-                    System.out.println("Клиент подключен");
+                    commandProcessor = new CommandProcessor(collectionManager, historyDeque, reader, writer);
 
-                    commandProcessor.SetIOStreams(reader, writer);
+                    System.out.println("Клиент подключен");
 
                     String command;
                     while ((command = reader.readLine()) != null) {
                         String response = executeCommand(command);
-                        writer.println(response);
+                        writer.println(response + "\u202F");
                     }
 
                     System.out.println("Клиент отключился");
                 } catch (IOException e) {
                     System.out.println("Клиент отключился");
-//                    System.err.println("Ошибка при обработке клиента " + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -55,5 +54,20 @@ public class Server {
     public String executeCommand(String command) {
         commandProcessor.CommandPut();
         return commandProcessor.executeCommand(command);
+    }
+
+    public static void main(String[] args) {
+        collectionManager.loadFromFile();
+
+        new Thread(() -> {
+            Server server = new Server(collectionManager, historyDeque);
+            server.run();
+        }).start();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

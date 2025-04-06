@@ -34,11 +34,11 @@ public class AddCommand implements Command {
      * @param collectionManager Менеджер коллекции, в которую будет добавлен элемент
      * @param commandProcessor Обработчик команд
      */
-    public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor) {
+    public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor, BufferedReader reader, PrintWriter writer) {
         this.collectionManager = collectionManager;
         this.commandProcessor = commandProcessor;
-        this.reader = commandProcessor.getReader();
-        this.writer = commandProcessor.getWriter();
+        this.reader = reader;
+        this.writer = writer;
     }
 
     /**
@@ -53,23 +53,20 @@ public class AddCommand implements Command {
         int newId = collectionManager.getNextId();
 
         try {
-            writer.print("Введите ваше имя: ");
-            writer.flush();
+            writer.println("Введите ваше имя:\u00A0");
             String userInput = reader.readLine();
+            System.out.println("name: " + userInput);
             NameValidation nameValidation = new NameValidation(commandProcessor, userInput);
             String name = nameValidation.getName();
 
-            writer.println("Ввод координат:");
-            writer.flush();
+            writer.println("--Ввод координат--");
 
-            writer.println("Введите координату x: ");
-            writer.flush();
+            writer.println("Введите координату x:\u00A0 ");
             String xInput = reader.readLine();
             XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(commandProcessor, xInput);
             int x = xCoordinateValidation.getX();
 
-            writer.print("Введите координату y: ");
-            writer.flush();
+            writer.println("Введите координату y:\u00A0 ");
             String yInput = reader.readLine();
             YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(commandProcessor, yInput);
             double y = yCoordinateValidation.getY();
@@ -77,40 +74,34 @@ public class AddCommand implements Command {
 
             LocalDateTime date = LocalDateTime.now();
 
-            writer.print("Введите цену: ");
-            writer.flush();
+            writer.println("Введите цену:\u00A0 ");
             String priceInput = reader.readLine();
             PriceValidation priceValidation = new PriceValidation(commandProcessor, priceInput);
             Long price = priceValidation.getPrice();
 
-            writer.print("Введите тип билета (VIP, USUAL, CHEAP): ");
-            writer.flush();
+            writer.println("Введите тип билета (VIP, USUAL, CHEAP):\u00A0 ");
             String typeInput = reader.readLine();
             TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(commandProcessor, typeInput);
             TicketType ticketType = ticketTypeValidation.getTicketType();
 
-            writer.print("Введите дату рождения в формате DD.MM.YYYY: ");
-            writer.flush();
+            writer.println("Введите дату рождения в формате DD.MM.YYYY:\u00A0 ");
             String birthdayInput = reader.readLine();
             BirthdayValidation birthdayValidation = new BirthdayValidation(commandProcessor, birthdayInput);
             String birthdayString = birthdayValidation.getBirthday();
             LocalDate localdate = LocalDate.parse(birthdayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             ZonedDateTime birthday = localdate.atStartOfDay(ZoneId.systemDefault());
 
-            writer.print("Введите ваш рост: ");
-            writer.flush();
+            writer.println("Введите ваш рост:\u00A0 ");
             String heightInput = reader.readLine();
             HeightValidation heightValidation = new HeightValidation(commandProcessor, heightInput);
             Long height = heightValidation.getHeight();
 
-            writer.print("Введите ваш вес: ");
-            writer.flush();
+            writer.println("Введите ваш вес:\u00A0 ");
             String weightInput = reader.readLine();
             WeightValidation weightValidation = new WeightValidation(commandProcessor, weightInput);
             int weight = weightValidation.getWeight();
 
-            writer.print("Введите координаты вашей локации через пробел (x y z): ");
-            writer.flush();
+            writer.println("Введите координаты вашей локации через пробел (x y z):\u00A0 ");
             String locationInput = reader.readLine();
             LocationValidation locationValidation = new LocationValidation(commandProcessor, locationInput);
             Location location = locationValidation.getLocation();
@@ -119,9 +110,8 @@ public class AddCommand implements Command {
             Ticket ticket = new Ticket(newId, name, coordinates, date, price, ticketType, person);
             this.collectionManager.getQueue().add(ticket);
 
-            response("Элемент добавлен");
+            response("Элемент добавлен.");
             // writer.println("Элемент добавлен");
-            // writer.flush();
         } catch (IOException e) {
             response("Ошибка ввода/вывода: " + e.getMessage());
         }

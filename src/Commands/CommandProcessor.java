@@ -22,9 +22,11 @@ public class CommandProcessor {
     private PrintWriter writer;
     private BufferedReader reader;
 
-    public CommandProcessor(CollectionManager collectionManager, Deque<String> historyDeque) {
+    public CommandProcessor(CollectionManager collectionManager, Deque<String> historyDeque, BufferedReader reader, PrintWriter writer) {
         this.collectionManager = collectionManager;
         this.historyDeque = historyDeque;
+        this.reader = reader;
+        this.writer = writer;
     }
 
     public CommandProcessor getCommandProcessor() {
@@ -45,7 +47,7 @@ public class CommandProcessor {
         commands.put("exit", new ExitCommand(this));
 
         // Команды с аргументами
-        commands.put("add", new AddCommand(collectionManager, this));
+        commands.put("add", new AddCommand(collectionManager, this, reader, writer));
         commands.put("update", new UpdateIdCommand(collectionManager, historyDeque, this));
         commands.put("remove_by_id", new RemoveByIdCommand(collectionManager));
         commands.put("execute_script", new ExecuteScriptCommand(this));
@@ -90,17 +92,17 @@ public class CommandProcessor {
         this.historyDeque.addLast(command);
     }
 
-    public void SetIOStreams(BufferedReader reader, PrintWriter writer) {
-        this.reader = reader;
-        this.writer = writer;
-    }
+//    public void SetIOStreams(BufferedReader reader, PrintWriter writer) {
+//        this.reader = reader;
+//        this.writer = writer;
+//    }
 
     public BufferedReader getReader() {
-        return reader;
+        return this.reader;
     }
 
     public PrintWriter getWriter() {
-        return writer;
+        return this.writer;
     }
 
     public void setCommandStack(Deque<String> commandStack) {

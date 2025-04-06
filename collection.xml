@@ -12,4 +12,16 @@
         <weight>80</weight>
         <location>1,1.0,1.0</location>
     </ticket>
+    <ticket>
+        <id>2</id>
+        <name>123</name>
+        <coordinates>123, 123.0</coordinates>
+        <date>2025-04-07T00:40:20.314413600</date>
+        <price>123</price>
+        <type>VIP</type>
+        <birthday>2000-01-21T00:00+03:00[Europe/Moscow]</birthday>
+        <height>145</height>
+        <weight>55</weight>
+        <location>1,1.0,1.0</location>
+    </ticket>
 </Tickets>

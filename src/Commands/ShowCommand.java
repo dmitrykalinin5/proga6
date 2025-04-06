@@ -38,9 +38,10 @@ public class ShowCommand implements Command {
             response("Коллекция пуста\n");
         } else {
             StringBuilder result = new StringBuilder();
+            result.append("\n");
             this.queue.stream()
                     .sorted(Comparator.comparing(Ticket::getId))
-                    .forEach(ticket -> result.append(ticket.toString()));
+                    .forEach(ticket -> result.append(ticket.toString()).append("\n"));
             response(result.toString());
         }
     }

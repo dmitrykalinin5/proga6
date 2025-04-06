@@ -2,7 +2,6 @@ package Console;
 
 import java.io.*;
 import java.net.Socket;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Client {
@@ -11,23 +10,30 @@ public class Client {
         try (Socket socket = new Socket("localhost", 5000);
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            Scanner scanner = new Scanner(System.in)) {
+             BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in))) {
 
             while (true) {
                 System.out.print("Введите команду: ");
                 //ввод
-                String userInput = scanner.nextLine();
-                writer.println(userInput);
+                String command = userInput.readLine();
+                writer.println(command);
                 // Ответ от сервера
-                String serverMessage;
+                String serverMessage = "\u202F";
                 while ((serverMessage = reader.readLine()) != null) {
                     System.out.println(serverMessage);
-                    if (serverMessage.trim().isEmpty()) {
-                        break;
-                    }
-                    if (serverMessage.trim().equalsIgnoreCase("завершение программы..")) {
+                    if (serverMessage.trim().contains("Завершение программы..")) {
                         System.exit(0);
                     }
+                    if (serverMessage.contains("\u00A0")) {
+                        String com = userInput.readLine();
+                        writer.println(com);
+                    }
+                    if (serverMessage.contains("\u202F")) {
+                        System.out.print("Введите команду: ");
+                        String com = userInput.readLine();
+                        writer.println(com);
+                    }
+
                 }
             }
         } catch (IOException e) {
