@@ -5,6 +5,7 @@ package Commands;
  * Этот класс реализует команду, которая выводит на экран описание всех доступных команд.
  */
 public class HelpCommand implements Command {
+    private String result;
 
     /**
      * Выполняет команду вывода справки по возможным командам.
@@ -14,7 +15,7 @@ public class HelpCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        System.out.print("Справка по возможным командам:\n" +
+        response("Справка по возможным командам:\n" +
                 "1. help - справка.\n" +
                 "2. info - получить информацию о коллекции.\n" +
                 "3. show - получить все элементы коллекции.\n" +
@@ -30,6 +31,16 @@ public class HelpCommand implements Command {
                 "13. remove_all_by_price (price) - удалить из коллекции все элементы, значения поля price которых равны заданному.\n" +
                 "14. min_by_id - вывести любой объект из коллекции, значение поля id которого является минимальным.\n" +
                 "15. group_counting_by_person - сгруппировать элементы коллекции по значению поля person, вывести количество элементов в каждой группе.\n");
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

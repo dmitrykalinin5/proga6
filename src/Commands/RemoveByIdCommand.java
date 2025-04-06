@@ -14,23 +14,12 @@ import java.util.PriorityQueue;
 public class RemoveByIdCommand implements Command {
     private CollectionManager collectionManager;
     private PriorityQueue<Ticket> queue;
+    private String result;
 
-    /**
-     * Конструктор для создания объекта RemoveByIdCommand.
-     *
-     * @param collectionManager Объект, управляющий коллекцией
-     */
     public RemoveByIdCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
-    /**
-     * Выполняет команду удаления элемента из коллекции по его id.
-     * Если элемент с указанным id существует и успешно удалён, выводится сообщение об успешном удалении.
-     * В случае ошибки (например, если id не существует или неправильно указан), выводится соответствующее сообщение.
-     *
-     * @param args Аргументы команды, где args[1] — это id элемента, который нужно удалить.
-     */
     @Override
     public void execute(String[] args) {
         this.queue = collectionManager.getQueue();
@@ -57,11 +46,16 @@ public class RemoveByIdCommand implements Command {
         }
     }
 
-    /**
-     * Описание команды.
-     *
-     * @return Описание команды, которая удаляет элемент по его id из коллекции.
-     */
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
+    }
+
     @Override
     public String description() {
         return "Removes an element by its id";

@@ -12,38 +12,35 @@ import java.util.Scanner;
  */
 public class WeightValidation implements Validation {
     private int weight;
-    private final String message;
     private CommandProcessor commandProcessor;
 
     /**
      * Конструктор класса WeightValidation.
      *
-     * @param message Сообщение, которое будет выведено при запросе ввода веса.
      * @param commandProcessor Объект для обработки команд, включая работу с флагом скрипта.
+     * @param userInput Ввод пользователя, полученный извне.
      */
-    public WeightValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public WeightValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
      * Метод для валидации веса.
      * Запрашивает у пользователя ввод и проверяет, что вес больше 0.
      *
+     * @param userInput строка, введенная пользователем.
      * @return Валидированное значение веса.
      */
-    public int validation() {
+    public int validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
                 String input;
+                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
-                    System.out.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
                 this.weight = Integer.parseInt(input);
                 if (!validate()) {
@@ -62,7 +59,7 @@ public class WeightValidation implements Validation {
      *
      * @return Введенный вес.
      */
-    public int getweight() {
+    public int getWeight() {
         return weight;
     }
 
@@ -84,6 +81,6 @@ public class WeightValidation implements Validation {
      */
     @Override
     public String getErrorMessage() {
-        return "Ошибка в росте";  // Возможно, это сообщение должно быть более специфичным для веса, например, "Ошибка в весе"
+        return "Ошибка в весе";  // Теперь это сообщение соответствует весу, а не росту
     }
 }

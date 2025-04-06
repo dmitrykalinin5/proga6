@@ -2,48 +2,38 @@ package Validaters;
 
 import Commands.CommandProcessor;
 import Tools.Validation;
-import Console.Client;
 
-import java.util.Scanner;
-
-/**
- * Класс для валидации координаты X.
- * Запрашивает у пользователя ввод координаты X и проверяет, что ввод является числом.
- */
 public class XCoordinateValidation implements Validation {
     private int x;
-    private String message;
     private CommandProcessor commandProcessor;
 
     /**
      * Конструктор класса XCoordinateValidation.
      *
-     * @param message Сообщение, которое будет выведено при запросе ввода координаты X.
      * @param commandProcessor Объект для обработки команд, включая работу с флагом скрипта.
+     * @param userInput Ввод пользователя, полученный извне.
      */
-    public XCoordinateValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public XCoordinateValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
      * Метод для валидации координаты X.
      * Запрашивает у пользователя ввод и проверяет, что это целое число.
      *
+     * @param userInput строка, введенная пользователем.
      * @return Валидированное значение координаты X.
      */
-    public int validation() {
+    public int validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
                 String input;
+                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
-                    System.out.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
                 this.x = Integer.parseInt(input);
                 return this.x;

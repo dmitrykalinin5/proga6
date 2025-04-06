@@ -5,45 +5,26 @@ import Console.Client;
 import Tools.Validation;
 import java.util.Scanner;
 
-/**
- * Класс для валидации имени.
- * Проверяет, является ли введенное имя валидным (не пустое и не null).
- */
 public class NameValidation implements Validation {
     private String name;
-    private final String message;
+    private String message;
     private CommandProcessor commandProcessor;
 
-    /**
-     * Конструктор класса.
-     *
-     * @param message Сообщение, которое будет выведено пользователю для ввода имени.
-     * @param commandProcessor Компонент для обработки команд (например, для выполнения скриптов).
-     */
-    public NameValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public NameValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
-    /**
-     * Метод для валидации введенного имени.
-     * Запрашивает ввод имени у пользователя и проверяет корректность ввода.
-     *
-     * @return Валидное имя, если оно не пустое и не null.
-     */
-    public String validation() {
+    public String validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
                 String input;
                 // Если скрипт выполняется, получаем команду из скрипта, иначе ожидаем ввод с клавиатуры
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
                     System.out.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
                 this.name = input;
                 // Проверяем, что имя не пустое

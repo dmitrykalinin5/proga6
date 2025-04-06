@@ -3,48 +3,38 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 import Collections.TicketType;
-import Console.Client;
 
-import java.util.Scanner;
-
-/**
- * Класс для валидации типа билета.
- * Проверяет, что введенный тип билета является допустимым значением из перечисления TicketType.
- */
 public class TicketTypeValidation implements Validation {
     private TicketType ticketType;
-    private final String message;
     private CommandProcessor commandProcessor;
 
     /**
      * Конструктор класса TicketTypeValidation.
      *
-     * @param message Сообщение, которое будет выведено при запросе типа билета.
      * @param commandProcessor Объект для обработки команд, включая работу с флагом скрипта.
+     * @param userInput Ввод пользователя, полученный извне.
      */
-    public TicketTypeValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public TicketTypeValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
      * Метод для валидации типа билета.
      * Запрашивает у пользователя ввод и проверяет, что введенный тип является допустимым значением из перечисления TicketType.
      *
+     * @param userInput строка, введенная пользователем.
      * @return Валидированное значение типа билета.
      */
-    public TicketType validation() {
+    public TicketType validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
                 String input;
+                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
-                    System.out.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
                 this.ticketType = TicketType.valueOf(input.toUpperCase());
                 return ticketType;

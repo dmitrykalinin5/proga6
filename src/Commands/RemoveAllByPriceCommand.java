@@ -12,6 +12,7 @@ import java.util.PriorityQueue;
  */
 public class RemoveAllByPriceCommand implements Command {
     private CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания объекта RemoveAllByPriceCommand.
@@ -44,13 +45,23 @@ public class RemoveAllByPriceCommand implements Command {
                 }
             }
             if (flag) {
-                System.out.println("Элементы успешно удалены");
+                response("Элементы успешно удалены");
             } else {
-                System.out.println("Элементов с такой ценой нет");
+                response("Элементов с такой ценой нет");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Цена должна быть числом");
+            response("Цена должна быть числом");
         }
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

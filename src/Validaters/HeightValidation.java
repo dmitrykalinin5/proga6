@@ -3,57 +3,47 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 
-import java.util.Scanner;
-
-/**
- * Класс для валидации роста.
- * Проверяет, является ли введенное значение роста валидным (больше 0).
- */
 public class HeightValidation implements Validation {
-    private Long Height;
-    private final String message;
+    private Long height;
     private CommandProcessor commandProcessor;
 
     /**
      * Конструктор класса.
      *
-     * @param message Сообщение, которое будет выведено пользователю для ввода роста.
      * @param commandProcessor Компонент для обработки команд (например, для выполнения скриптов).
+     * @param userInput Ввод пользователя, полученный извне.
      */
-    public HeightValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public HeightValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
      * Метод для валидации введенного роста.
-     * Запрашивает ввод роста у пользователя, проверяет его корректность (рост должен быть больше 0).
      *
+     * @param userInput строка, введенная пользователем
      * @return Корректное значение роста, если оно валидно.
      */
-    public Long validation() {
+    public Long validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
                 String input;
-                // Если скрипт выполняется, получаем команду из скрипта, иначе ожидаем ввод с клавиатуры
+                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
-                    System.out.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
-                this.Height = Long.parseLong(input);
+                this.height = Long.parseLong(input);
                 // Проверяем, что рост больше 0
                 if (!validate()) {
                     System.out.println("Рост должен быть больше 0");
                     continue;
                 }
-                return this.Height;
+                return this.height;
             } catch (NumberFormatException e) {
                 System.out.println("Некорректный ввод");
+                return null; // чтобы не зациклиться при ошибке в режиме обычного ввода
             }
         }
     }
@@ -63,7 +53,9 @@ public class HeightValidation implements Validation {
      *
      * @return Введенный рост.
      */
-    public Long getHeight() { return Height; }
+    public Long getHeight() {
+        return height;
+    }
 
     /**
      * Метод для проверки валидности введенного роста.
@@ -72,7 +64,7 @@ public class HeightValidation implements Validation {
      */
     @Override
     public boolean validate() {
-        return Height != null && Height > 0;
+        return height != null && height > 0;
     }
 
     /**

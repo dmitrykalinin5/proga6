@@ -8,6 +8,7 @@ import Collections.CollectionManager;
  */
 public class MinByIdCommand implements Command {
     private CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания объекта MinByIdCommand.
@@ -26,13 +27,22 @@ public class MinByIdCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        System.out.println();
         try {
             String element = collectionManager.getQueue().peek().toString();
-            System.out.println("Элемент с минимальным айди:\n" + element);
+            response("\nЭлемент с минимальным айди:\n" + element);
         } catch (NullPointerException e) {
-            System.out.println("Элемент не обнаружен");
+            response("Элемент не обнаружен");
         }
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

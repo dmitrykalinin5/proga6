@@ -13,19 +13,13 @@ import java.util.Scanner;
  */
 public class BirthdayValidation implements Validation {
     private String birthday;
-    private final String message;
+//    private final String message;
     private CommandProcessor commandProcessor;
 
-    /**
-     * Конструктор класса.
-     *
-     * @param message Сообщение, которое будет выведено пользователю для ввода даты рождения.
-     * @param commandProcessor Компонент для обработки команд (например, для выполнения скриптов).
-     */
-    public BirthdayValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public BirthdayValidation(CommandProcessor commandProcessor, String userInput) {
+//        this.message = message;
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
@@ -34,18 +28,17 @@ public class BirthdayValidation implements Validation {
      *
      * @return Корректно введенная дата рождения в формате "dd.mm.yyyy".
      */
-    public String validation() {
+    public String validation(String userInput) {
         int[] months31 = {1, 3, 5, 7, 8, 10, 12};
         int[] months30 = {4, 6, 9, 11};
         while (true) {
             try {
-                System.out.print(message);
+//                System.out.print(message);
                 String input;
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
                 this.birthday = input;
                 String[] inputSplit = this.birthday.split("\\.");

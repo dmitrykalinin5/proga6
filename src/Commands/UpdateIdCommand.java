@@ -1,77 +1,169 @@
 package Commands;
 
-import Collections.CollectionManager;
-import Console.Client;
+import Collections.*;
+import Validaters.*;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 /**
  * Команда для обновления элемента коллекции по его id.
- * Этот класс реализует команду, которая позволяет пользователю обновить
- * данные элемента коллекции по заданному id.
  */
 public class UpdateIdCommand implements Command {
     private int id;
     private final CollectionManager collectionManager;
     private final Deque<String> historyDeque;
-    private CommandProcessor commandProcessor;
+    private final CommandProcessor commandProcessor;
+    private final BufferedReader reader;
+    private final PrintWriter writer;
+    private String result;
 
-    /**
-     * Конструктор для создания объекта UpdateIdCommand.
-     *
-     * @param collectionManager Объект, управляющий коллекцией.
-     * @param historyDeque Очередь команд, предназначенная для хранения истории выполнения.
-     * @param commandProcessor Обработчик команд, используемый для выполнения команд в скрипте.
-     */
     public UpdateIdCommand(CollectionManager collectionManager, Deque<String> historyDeque, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
         this.historyDeque = historyDeque;
         this.commandProcessor = commandProcessor;
+        this.reader = commandProcessor.getReader();
+        this.writer = commandProcessor.getWriter();
     }
 
-    /**
-     * Выполняет команду обновления элемента коллекции по его id.
-     * Запрашивает у пользователя информацию для обновления элемента (имя, координаты, цену и другие параметры)
-     * и обновляет указанный элемент в коллекции.
-     *
-     * @param args Аргументы команды. Первым аргументом должен быть id элемента для обновления.
-     */
     @Override
     public void execute(String[] args) {
         try {
-            id = Integer.parseInt(args[1]); // Парсим id элемента
-            System.out.println("Какой элемент вы хотите обновить? (имя, координаты, цена, тип билета, дата рождения, рост, вес, локация): ");
+            id = Integer.parseInt(args[1]);
+            writer.println("Что вы хотите обновить? (имя, координаты, цена, тип билета, дата рождения, рост, вес, локация):");
+            writer.print("> ");
+            writer.flush();
 
-            // Цикл для получения корректного ввода
             while (true) {
                 String input;
                 if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim(); // Ввод из скрипта
-                    System.out.println(input);
+                    input = commandProcessor.getNextCommand().trim();
+                    writer.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim(); // Ввод с клавиатуры
+                    input = reader.readLine().trim();
                 }
-                boolean isUpdated = collectionManager.update(id, input); // Попытка обновить элемент
+
+                boolean isUpdated = update(id, input);
                 if (isUpdated) {
-                    break; // Если обновление прошло успешно, выходим из цикла
+                    break;
                 } else {
-                    System.out.print("Некорректный ввод, попробуйте еще раз: "); // Если ввод некорректный, просим повторить
+                    writer.println("Некорректный ввод, попробуйте снова.");
+                    writer.print("> ");
+                    writer.flush();
                 }
             }
-            System.out.println("Данные обновлены");
+
+            writer.println("Данные обновлены");
+            writer.flush();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Некорректный ввод"); // Ошибка, если id не передан
+            writer.println("ID не передан в команду.");
+            writer.flush();
+        } catch (IOException e) {
+            writer.println("Ошибка чтения: " + e.getMessage());
+            writer.flush();
         }
     }
 
-    /**
-     * Описание команды.
-     *
-     * @return Описание команды, которая обновляет данные элемента по его id.
-     */
+    public boolean update(int id, String element) throws IOException {
+        PriorityQueue<Ticket> queue = collectionManager.getQueue();
+        for (Ticket ticket : queue) {
+            if (ticket.getId() == id) {
+                switch (element.toLowerCase()) {
+                    case "имя":
+                        writer.print("Введите новое имя: ");
+                        writer.flush();
+                        String nameInput = reader.readLine();
+                        NameValidation nameValidation = new NameValidation(commandProcessor, nameInput);
+                        ticket.setName(nameValidation.getName());
+                        return true;
+
+                    case "координаты":
+                        writer.print("Введите x: ");
+                        writer.flush();
+                        String xInput = reader.readLine();
+                        XCoordinateValidation xVal = new XCoordinateValidation(commandProcessor, xInput);
+
+                        writer.print("Введите y: ");
+                        writer.flush();
+                        String yInput = reader.readLine();
+                        YCoordinateValidation yVal = new YCoordinateValidation(commandProcessor, yInput);
+
+                        ticket.setCoordinates(new Coordinates(xVal.getX(), yVal.getY()));
+                        return true;
+
+                    case "цена":
+                        writer.print("Введите цену: ");
+                        writer.flush();
+                        String priceInput = reader.readLine();
+                        PriceValidation priceVal = new PriceValidation(commandProcessor, priceInput);
+                        ticket.setPrice(priceVal.getPrice());
+                        return true;
+
+                    case "тип билета":
+                        writer.print("Введите тип билета (VIP, USUAL, CHEAP): ");
+                        writer.flush();
+                        String typeInput = reader.readLine();
+                        TicketTypeValidation typeVal = new TicketTypeValidation(commandProcessor, typeInput);
+                        ticket.setType(typeVal.getTicketType());
+                        return true;
+
+                    case "дата рождения":
+                        writer.print("Введите дату (DD.MM.YYYY): ");
+                        writer.flush();
+                        String birthInput = reader.readLine();
+                        BirthdayValidation birthVal = new BirthdayValidation(commandProcessor, birthInput);
+                        LocalDate localDate = LocalDate.parse(birthVal.getBirthday(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                        ticket.setBirthday(localDate.atStartOfDay(ZoneId.systemDefault()));
+                        return true;
+
+                    case "рост":
+                        writer.print("Введите рост: ");
+                        writer.flush();
+                        String heightInput = reader.readLine();
+                        HeightValidation heightVal = new HeightValidation(commandProcessor, heightInput);
+                        ticket.setHeight(heightVal.getHeight());
+                        return true;
+
+                    case "вес":
+                        writer.print("Введите вес: ");
+                        writer.flush();
+                        String weightInput = reader.readLine();
+                        WeightValidation weightVal = new WeightValidation(commandProcessor, weightInput);
+                        ticket.setWeight(weightVal.getWeight());
+                        return true;
+
+                    case "локация":
+                        writer.print("Введите координаты (x y z): ");
+                        writer.flush();
+                        String locationInput = reader.readLine();
+                        LocationValidation locVal = new LocationValidation(commandProcessor, locationInput);
+                        ticket.setLocation(locVal.getLocation());
+                        return true;
+                }
+            }
+        }
+
+        writer.println("Элемент с таким ID не найден.");
+        writer.flush();
+        return false;
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
+    }
+
     @Override
     public String description() {
         return "Обновить элемент по id";

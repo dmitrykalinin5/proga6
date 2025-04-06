@@ -3,6 +3,7 @@ package Commands;
 import Collections.CollectionManager;
 import Collections.Ticket;
 
+import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
 /**
@@ -11,14 +12,19 @@ import java.util.PriorityQueue;
  */
 public class RemoveHeadCommand implements Command {
     private final CollectionManager collectionManager;
+    private String result;
+    private CommandProcessor commandProcessor;
+    private PrintWriter writer;
 
     /**
      * Конструктор для создания объекта RemoveHeadCommand.
      *
      * @param collectionManager Объект, управляющий коллекцией.
      */
-    public RemoveHeadCommand(CollectionManager collectionManager) {
+    public RemoveHeadCommand(CollectionManager collectionManager, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
+        this.commandProcessor = commandProcessor;
+        this.writer = commandProcessor.getWriter();
     }
 
     /**
@@ -33,15 +39,25 @@ public class RemoveHeadCommand implements Command {
         PriorityQueue<Ticket> queue = collectionManager.getQueue();
         boolean flag = false;
         if (!queue.isEmpty()) {
-            System.out.println(queue.peek());
+            writer.println(queue.peek());
             queue.remove(queue.peek());
             flag = true;
         }
         if (flag) {
-            System.out.println("Элемент успешно выведен и удален");
+            response("Элемент успешно выведен и удален");
         } else {
-            System.out.println("Нечего выводить! Коллекция пуста");
+            response("Нечего выводить! Коллекция пуста");
         }
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

@@ -1,6 +1,10 @@
 package Commands;
 
 import Collections.CollectionManager;
+
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.nio.Buffer;
 import java.util.*;
 
 /**
@@ -15,13 +19,9 @@ public class CommandProcessor {
     private boolean scriptFlag = false;
     private List<String> bannedFiles = new ArrayList<>();
     private Deque<String> commandStack = new ArrayDeque<>();
+    private PrintWriter writer;
+    private BufferedReader reader;
 
-    /**
-     * Конструктор класса CommandProcessor, инициализирует необходимые компоненты.
-     *
-     * @param collectionManager Объект для работы с коллекцией
-     * @param historyDeque История команд
-     */
     public CommandProcessor(CollectionManager collectionManager, Deque<String> historyDeque) {
         this.collectionManager = collectionManager;
         this.historyDeque = historyDeque;
@@ -31,9 +31,6 @@ public class CommandProcessor {
         return this;
     }
 
-    /**
-     * Метод, который добавляет команды в список доступных команд.
-     */
     public void CommandPut() {
         // Список команд
         commands.put("help", new HelpCommand());
@@ -41,7 +38,7 @@ public class CommandProcessor {
         commands.put("show", new ShowCommand(collectionManager));
         commands.put("clear", new ClearCommand(collectionManager));
         commands.put("remove_first", new RemoveFirstCommand(collectionManager));
-        commands.put("remove_head", new RemoveHeadCommand(collectionManager));
+        commands.put("remove_head", new RemoveHeadCommand(collectionManager, this));
         commands.put("history", new HistoryCommand(this));
         commands.put("min_by_id", new MinByIdCommand(collectionManager));
         commands.put("group_counting_by_person", new GroupCountingByPersonCommand(collectionManager));
@@ -59,10 +56,6 @@ public class CommandProcessor {
         commands.put("save", new SaveCommand(collectionManager));
     }
 
-    /**
-     * Метод для выполнения скрипта команд.
-     * Проверяет, не вызывает ли скрипт сам себя.
-     */
     public void executeScript() {
         String currentCommand = getNextCommand();
         String[] args = currentCommand.split(" ");
@@ -76,109 +69,19 @@ public class CommandProcessor {
         }
     }
 
-    /**
-     * Устанавливает стек команд.
-     *
-     * @param commandStack Стек команд
-     */
-    public void setCommandStack(Deque<String> commandStack) {
-        this.commandStack = commandStack;
-    }
-
-    /**
-     * Удаляет и возвращает первую команду из стека.
-     *
-     * @return Первая команда в стеке
-     */
-    public String removeFirstCommandStack() {
-        return commandStack.removeFirst();
-    }
-
-    /**
-     * Удаляет и возвращает последнюю команду из стека.
-     *
-     * @return Последняя команда в стеке
-     */
-    public String removeLastCommandStack() {
-        return commandStack.removeLast();
-    }
-
-    /**
-     * Получает текущий стек команд.
-     *
-     * @return Стек команд
-     */
-    public Deque<String> getCommandStack() {
-        return commandStack;
-    }
-
-    /**
-     * Добавляет команду в начало стека команд.
-     *
-     * @param command Команда для добавления
-     */
-    public void addFirstCommandtoStack(String command) {
-        commandStack.addFirst(command);
-    }
-
-    /**
-     * Добавляет команду в конец стека команд.
-     *
-     * @param command Команда для добавления
-     */
-    public void addLastCommandtoStack(String command) {
-        commandStack.addLast(command);
-    }
-
-    /**
-     * Получает следующую команду из стека и удаляет её.
-     *
-     * @return Следующая команда из стека
-     */
-    public String getNextCommand() {
-        return this.commandStack.removeFirst().trim();
-    }
-
-    /**
-     * Устанавливает флаг скрипта, который указывает на выполнение скрипта.
-     *
-     * @param flag Значение флага
-     */
-    public void setScriptFlag(boolean flag) {
-        this.scriptFlag = flag;
-    }
-
-    /**
-     * Получает флаг скрипта.
-     *
-     * @return Флаг скрипта
-     */
-    public boolean getScriptFlag() {
-        return scriptFlag;
-    }
-
-    /**
-     * Выполняет команду, переданную через входные данные.
-     *
-     * @param input Входные данные с командой
-     */
-    public void executeCommand(String input) {
+    public String executeCommand(String input) {
         String[] parts = input.split(" ");
         String commandName = parts[0];
         Command command = commands.get(commandName);
         try {
             command.execute(parts);
             saveCommand(parts[0]);
+            return command.getResponse();
         } catch (NullPointerException exception) {
-            System.out.println("Такой команды не существует");
+            return "Такой команды не существует";
         }
     }
 
-    /**
-     * Сохраняет команду в историю, если её размер не превышает максимума.
-     *
-     * @param command Команда для сохранения
-     */
     public void saveCommand(String command) {
         int maxSize = 13;
         if (this.historyDeque.size() >= maxSize) {
@@ -187,29 +90,63 @@ public class CommandProcessor {
         this.historyDeque.addLast(command);
     }
 
-    /**
-     * Получает очередь команд из истории.
-     *
-     * @return История команд
-     */
+    public void SetIOStreams(BufferedReader reader, PrintWriter writer) {
+        this.reader = reader;
+        this.writer = writer;
+    }
+
+    public BufferedReader getReader() {
+        return reader;
+    }
+
+    public PrintWriter getWriter() {
+        return writer;
+    }
+
+    public void setCommandStack(Deque<String> commandStack) {
+        this.commandStack = commandStack;
+    }
+
+    public String removeFirstCommandStack() {
+        return commandStack.removeFirst();
+    }
+
+    public String removeLastCommandStack() {
+        return commandStack.removeLast();
+    }
+
+    public Deque<String> getCommandStack() {
+        return commandStack;
+    }
+
+    public void addFirstCommandtoStack(String command) {
+        commandStack.addFirst(command);
+    }
+
+    public void addLastCommandtoStack(String command) {
+        commandStack.addLast(command);
+    }
+
+    public String getNextCommand() {
+        return this.commandStack.removeFirst().trim();
+    }
+
+    public void setScriptFlag(boolean flag) {
+        this.scriptFlag = flag;
+    }
+
+    public boolean getScriptFlag() {
+        return scriptFlag;
+    }
+
     public Deque<String> getDeque() {
         return this.historyDeque;
     }
 
-    /**
-     * Получает список запрещённых файлов.
-     *
-     * @return Список запрещённых файлов
-     */
     public List<String> getBannedFiles() {
         return bannedFiles;
     }
 
-    /**
-     * Устанавливает список запрещённых файлов.
-     *
-     * @param bannedFiles Новый список запрещённых файлов
-     */
     public void setBannedFiles(List<String> bannedFiles) {
         this.bannedFiles = bannedFiles;
     }

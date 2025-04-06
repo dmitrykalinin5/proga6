@@ -5,17 +5,8 @@ import Console.Server;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-
-/**
- * Главный класс программы, отвечающий за инициализацию и запуск сессий.
- */
 public class Main {
 
-    /**
-     * Точка входа в программу, где создаются все необходимые компоненты и запускаются сессии.
-     *
-     * @param args Аргументы командной строки (не используются в данной реализации)
-     */
     public static void main(String[] args) {
         // Создание и загрузка коллекции
         CollectionManager collectionManager = new CollectionManager();
@@ -28,6 +19,7 @@ public class Main {
 
         new Thread(() -> {
             Server server = new Server(collectionManager, historyDeque, commandProcessor);
+            server.run();
         }).start();
 
         try {
@@ -35,14 +27,5 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        Client client = new Client(collectionManager, historyDeque, commandProcessor);
-        client.interact();
-
-        // Запуск бесконечного цикла для создания новых сессий
-//        while (true) {
-//            Server server = new Server(collectionManager, historyDeque, commandProcessor);
-//            server.run();
-//        }
     }
 }

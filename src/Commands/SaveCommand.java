@@ -8,6 +8,7 @@ import Collections.CollectionManager;
  */
 public class SaveCommand implements Command {
     private final CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания объекта SaveCommand.
@@ -26,8 +27,18 @@ public class SaveCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        System.out.println("Сохранение коллекции...");
+        response("Сохранение коллекции...");
         collectionManager.saveToFile();
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

@@ -11,6 +11,7 @@ import java.util.PriorityQueue;
  */
 public class RemoveFirstCommand implements Command {
     private CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания объекта RemoveFirstCommand.
@@ -37,10 +38,20 @@ public class RemoveFirstCommand implements Command {
             flag = true;
         }
         if (flag) {
-            System.out.println("Элемент успешно удален");
+            response("Элемент успешно удален");
         } else {
-            System.out.println("Нечего удалять! Коллекция пуста");
+            response("Нечего удалять! Коллекция пуста");
         }
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class GroupCountingByPersonCommand implements Command {
     private CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания команды, которая работает с коллекцией.
@@ -50,7 +51,17 @@ public class GroupCountingByPersonCommand implements Command {
         }
 
         // Выводим результат
-        System.out.println(result.toString());
+        response(result.toString());
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

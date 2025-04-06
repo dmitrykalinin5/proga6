@@ -12,19 +12,17 @@ import java.util.Scanner;
  */
 public class LocationValidation implements Validation {
     private Location location;
-    private final String message;
     private CommandProcessor commandProcessor;
 
     /**
      * Конструктор класса.
      *
-     * @param message Сообщение, которое будет выведено пользователю для ввода локации.
      * @param commandProcessor Компонент для обработки команд (например, для выполнения скриптов).
+     * @param userInput Ввод пользователя, полученный извне.
      */
-    public LocationValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public LocationValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
@@ -32,31 +30,30 @@ public class LocationValidation implements Validation {
      * Запрашивает ввод локации у пользователя и проверяет корректность ввода.
      * Локация состоит из трех чисел: x (long), y (double), и z (float).
      *
+     * @param userInput строка, введенная пользователем.
      * @return Корректное значение локации, если оно валидно.
      */
-    public Location validation() {
+    public Location validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
-                String input;
-                // Если скрипт выполняется, получаем команду из скрипта, иначе ожидаем ввод с клавиатуры
-                if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim();
-                    System.out.println(input);
-                } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
-                }
+                String input = userInput.trim();
                 String[] elements = input.split(" ");
+                // Проверяем, что введены 3 элемента
+                if (elements.length != 3) {
+                    System.out.println("Неверное количество элементов. Введите 3 значения.");
+                    continue;
+                }
+
                 // Преобразуем введенные строки в соответствующие типы данных
                 long x = Long.parseLong(elements[0]);
                 double y = Double.parseDouble(elements[1]);
                 Float z = Float.parseFloat(elements[2]);
+
                 // Создаем объект Location с введенными значениями
                 this.location = new Location(x, y, z);
                 return this.location;
             } catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Некорректный ввод");
+                System.out.println("Некорректный ввод. Убедитесь, что все три значения числовые.");
             }
         }
     }
@@ -87,6 +84,6 @@ public class LocationValidation implements Validation {
      */
     @Override
     public String getErrorMessage() {
-        return "Ошибка в Coordinates";
+        return "Ошибка в координатах локации";
     }
 }

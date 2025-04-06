@@ -8,6 +8,7 @@ import Collections.CollectionManager;
  */
 public class ClearCommand implements Command {
     private CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания команды очистки коллекции.
@@ -27,7 +28,17 @@ public class ClearCommand implements Command {
     @Override
     public void execute(String[] args) {
         collectionManager.getQueue().clear();
-        System.out.println("Коллекция очищена");
+        response("Коллекция очищена");
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

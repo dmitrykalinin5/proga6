@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class ExecuteScriptCommand implements Command {
     private final CommandProcessor commandProcessor;
+    private String result;
 
     /**
      * Конструктор для создания команды выполнения скрипта.
@@ -98,9 +99,20 @@ public class ExecuteScriptCommand implements Command {
                 }
             }
         } catch (NoSuchElementException e) {
-            System.out.println("Ошибка, элементы кончились. Проверьте правильность введенных вами команд, скорее всего проблема в них.");
+            response("Ошибка, элементы кончились. Проверьте правильность введенных вами команд, скорее всего проблема в них.");
         }
         commandProcessor.setScriptFlag(false);
+        response("Выполнение скрипта завершено");
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

@@ -1,6 +1,7 @@
 package Commands;
 
 import Commands.CommandProcessor;
+import Console.Client;
 
 /**
  * Команда для завершения работы программы.
@@ -8,6 +9,7 @@ import Commands.CommandProcessor;
  */
 public class ExitCommand implements Command {
     private final CommandProcessor commandProcessor;
+    private String result;
 
     public ExitCommand(CommandProcessor commandProcessor) {
         this.commandProcessor = commandProcessor;
@@ -23,7 +25,17 @@ public class ExitCommand implements Command {
     public void execute(String[] args) {
         this.commandProcessor.ServerCommandPut();
         this.commandProcessor.executeCommand("save");
-        System.exit(0);
+        response("Завершение программы..");
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

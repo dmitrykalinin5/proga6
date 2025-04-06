@@ -2,12 +2,16 @@ package Commands;
 
 import Commands.HistoryCommand;
 
+import java.io.PrintWriter;
+
 /**
  * Команда для вывода последних 13 введённых команд.
  * Этот класс реализует команду, которая отображает список последних 13 команд, выполненных пользователем.
  */
 public class HistoryCommand implements Command {
     private CommandProcessor commandProcessor;
+    private String result = "Команда выполнена";
+    private PrintWriter writer;
 
     /**
      * Конструктор для создания объекта HistoryCommand.
@@ -16,6 +20,7 @@ public class HistoryCommand implements Command {
      */
     public HistoryCommand(CommandProcessor commandProcessor) {
         this.commandProcessor = commandProcessor;
+        this.writer = commandProcessor.getWriter();
     }
 
     /**
@@ -27,10 +32,22 @@ public class HistoryCommand implements Command {
     @Override
     public void execute(String[] args) {
         String[] commands = commandProcessor.getDeque().toArray(new String[0]);
-        System.out.println("Список последних 13 команд:");
+        writer.println("Список последних 13 команд:");
+        writer.flush();
         for (int i = commands.length - 1, index = 1; i >= 0; i--, index++) {
-            System.out.println(index + ". " + commands[i]);
+            writer.println(index + ". " + commands[i]);
+            writer.flush();
         }
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

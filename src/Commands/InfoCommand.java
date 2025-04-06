@@ -11,6 +11,7 @@ import java.util.PriorityQueue;
  */
 public class InfoCommand implements Command {
     private final CollectionManager collectionManager;
+    private String result;
 
     /**
      * Конструктор для создания объекта InfoCommand.
@@ -31,7 +32,17 @@ public class InfoCommand implements Command {
     public void execute(String[] args) {
         String info = "Информация о коллекции:\nДата создания: " + collectionManager.getCreationTime().toString()
                 + "\nКол-во элементов: " + collectionManager.collectionSize();
-        System.out.println(info);
+        response(info);
+    }
+
+    @Override
+    public void response(String result) {
+        this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

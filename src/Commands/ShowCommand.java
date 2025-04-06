@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
 public class ShowCommand implements Command {
     private final CollectionManager collectionManager;
     private PriorityQueue<Ticket> queue;
+    private String result;
 
     /**
      * Конструктор для создания объекта ShowCommand.
@@ -33,16 +34,25 @@ public class ShowCommand implements Command {
     @Override
     public void execute(String[] args) {
         queue = collectionManager.getQueue();
-        System.out.println();
         if (this.queue.isEmpty()) {
-            System.out.println("Коллекция пуста\n");
+            response("Коллекция пуста\n");
         } else {
             StringBuilder result = new StringBuilder();
             this.queue.stream()
                     .sorted(Comparator.comparing(Ticket::getId))
-                    .forEach(ticket -> result.append(ticket.toString()).append("\n"));
-            System.out.print(result.toString());
+                    .forEach(ticket -> result.append(ticket.toString()));
+            response(result.toString());
         }
+    }
+
+    @Override
+    public void response(String result) {
+         this.result = result;
+    }
+
+    @Override
+    public String getResponse() {
+        return this.result;
     }
 
     /**

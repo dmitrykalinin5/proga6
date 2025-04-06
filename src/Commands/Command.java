@@ -15,6 +15,10 @@ public interface Command {
      */
     void execute(String[] args);
 
+    void response(String result);
+
+    String getResponse();
+
     /**
      * Метод, который возвращает описание команды.
      * Каждая команда должна предоставить строку с описанием своей функциональности.

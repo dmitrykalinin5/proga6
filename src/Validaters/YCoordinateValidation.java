@@ -1,54 +1,44 @@
 package Validaters;
 
 import Commands.CommandProcessor;
-import Console.Client;
 import Tools.Validation;
 
-import java.util.Scanner;
-
-/**
- * Класс для валидации координаты Y.
- * Запрашивает у пользователя ввод координаты Y и проверяет, что ввод является числом с плавающей запятой.
- */
 public class YCoordinateValidation implements Validation {
     private double y;
-    private String message;
     private CommandProcessor commandProcessor;
 
     /**
      * Конструктор класса YCoordinateValidation.
      *
-     * @param message Сообщение, которое будет выведено при запросе ввода координаты Y.
      * @param commandProcessor Объект для обработки команд, включая работу с флагом скрипта.
+     * @param userInput Ввод пользователя, полученный извне.
      */
-    public YCoordinateValidation(String message, CommandProcessor commandProcessor) {
-        this.message = message;
+    public YCoordinateValidation(CommandProcessor commandProcessor, String userInput) {
         this.commandProcessor = commandProcessor;
-        validation();
+        validation(userInput);
     }
 
     /**
      * Метод для валидации координаты Y.
      * Запрашивает у пользователя ввод и проверяет, что это число с плавающей запятой.
      *
+     * @param userInput строка, введенная пользователем.
      * @return Валидированное значение координаты Y.
      */
-    public double validation() {
+    public double validation(String userInput) {
         while (true) {
             try {
-                System.out.print(message);
                 String input;
+                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
                 if (commandProcessor.getScriptFlag()) {
                     input = commandProcessor.getNextCommand().trim();
-                    System.out.println(input);
                 } else {
-                    Scanner scanner = new Scanner(System.in);
-                    input = scanner.nextLine().trim();
+                    input = userInput.trim();
                 }
                 this.y = Double.parseDouble(input);
                 return this.y;
             } catch (NumberFormatException e) {
-                System.out.println("Некорректный ввод");
+                System.out.println("Некорректный ввод: " + e.toString());
             }
         }
     }
