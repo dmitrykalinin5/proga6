@@ -2,49 +2,41 @@ package Validaters;
 
 import Commands.CommandProcessor;
 import Tools.Validation;
+import Console.Client;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+import java.util.Scanner;
 
+/**
+ * Класс для валидации цены.
+ * Проверяет, что цена больше 0.
+ */
 public class PriceValidation implements Validation {
     private Long price;
-    private CommandProcessor commandProcessor;
-    private BufferedReader in;
-    private PrintWriter out;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public PriceValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
-        this.commandProcessor = commandProcessor;
+    public PriceValidation(String userInput) {
         validation(userInput);
-        this.in = in;
-        this.out = out;
     }
 
     /**
      * Метод для валидации цены.
-     * Проверяет, что цена больше 0.
+     * Запрашивает у пользователя ввод и проверяет, что цена больше 0.
      *
-     * @param userInput строка, введенная пользователем
      * @return Валидированное значение цены.
      */
-    public Long validation(String userInput) {
+    public Long validation(String input) {
         while (true) {
             try {
-                String input;
-                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
-                if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim();
-                } else {
-                    input = userInput.trim();
-                }
                 this.price = Long.parseLong(input);
                 if (!validate()) {
-                    out.println("Цена должна быть больше 0");
+                    System.out.println("Цена должна быть больше 0, попробуйте еще раз");
+                    input = scanner.nextLine().trim();
                     continue;
                 }
                 return this.price;
             } catch (NumberFormatException e) {
-                out.println("Некорректный ввод");
-                return null; // чтобы не зациклиться при ошибке в режиме обычного ввода
+                System.out.println("Некорректный ввод, попробуйте еще раз");
+                input = scanner.nextLine().trim();
             }
         }
     }
@@ -54,9 +46,7 @@ public class PriceValidation implements Validation {
      *
      * @return Цена, введенная пользователем.
      */
-    public Long getPrice() {
-        return price;
-    }
+    public Long getPrice() { return price; }
 
     /**
      * Метод для валидации цены.
@@ -65,9 +55,7 @@ public class PriceValidation implements Validation {
      * @return true, если цена больше 0, иначе false.
      */
     @Override
-    public boolean validate() {
-        return price > 0;
-    }
+    public boolean validate() { return price > 0; }
 
     /**
      * Метод для получения сообщения об ошибке при неверной цене.
@@ -75,7 +63,5 @@ public class PriceValidation implements Validation {
      * @return Сообщение об ошибке.
      */
     @Override
-    public String getErrorMessage() {
-        return "Ошибка в цене";
-    }
+    public String getErrorMessage() { return "Ошибка в цене"; }
 }

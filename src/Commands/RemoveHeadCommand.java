@@ -24,7 +24,7 @@ public class RemoveHeadCommand implements Command {
     public RemoveHeadCommand(CollectionManager collectionManager, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
         this.commandProcessor = commandProcessor;
-        this.writer = commandProcessor.getWriter();
+//        this.writer = commandProcessor.getWriter();
     }
 
     /**
@@ -39,7 +39,7 @@ public class RemoveHeadCommand implements Command {
         PriorityQueue<Ticket> queue = collectionManager.getQueue();
         boolean flag = false;
         if (!queue.isEmpty()) {
-            writer.println(queue.peek());
+            System.out.println(queue.peek());
             queue.remove(queue.peek());
             flag = true;
         }

@@ -2,6 +2,7 @@ package Commands;
 
 import Commands.HistoryCommand;
 
+import java.io.BufferedInputStream;
 import java.io.PrintWriter;
 
 /**
@@ -11,7 +12,7 @@ import java.io.PrintWriter;
 public class HistoryCommand implements Command {
     private CommandProcessor commandProcessor;
     private String result = "Команда выполнена";
-    private PrintWriter writer;
+    private BufferedInputStream writer;
 
     /**
      * Конструктор для создания объекта HistoryCommand.
@@ -20,7 +21,7 @@ public class HistoryCommand implements Command {
      */
     public HistoryCommand(CommandProcessor commandProcessor) {
         this.commandProcessor = commandProcessor;
-        this.writer = commandProcessor.getWriter();
+        this.writer = commandProcessor.getInputStream();
     }
 
     /**
@@ -32,11 +33,9 @@ public class HistoryCommand implements Command {
     @Override
     public void execute(String[] args) {
         String[] commands = commandProcessor.getDeque().toArray(new String[0]);
-        writer.println("Список последних 13 команд:");
-        writer.flush();
+        System.out.println("Список последних 13 команд:");
         for (int i = commands.length - 1, index = 1; i >= 0; i--, index++) {
-            writer.println(index + ". " + commands[i]);
-            writer.flush();
+            System.out.println(index + ". " + commands[i]);
         }
     }
 

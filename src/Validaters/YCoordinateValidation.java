@@ -1,40 +1,37 @@
 package Validaters;
 
 import Commands.CommandProcessor;
+import Console.Client;
 import Tools.Validation;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+import java.util.Scanner;
 
+/**
+ * Класс для валидации координаты Y.
+ * Запрашивает у пользователя ввод координаты Y и проверяет, что ввод является числом с плавающей запятой.
+ */
 public class YCoordinateValidation implements Validation {
     private double y;
-    private CommandProcessor commandProcessor;
-    private BufferedReader in;
-    private PrintWriter out;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public YCoordinateValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
-        this.commandProcessor = commandProcessor;
+    public YCoordinateValidation(String userInput) {
         validation(userInput);
-        this.in = in;
-        this.out = out;
     }
 
     /**
      * Метод для валидации координаты Y.
      * Запрашивает у пользователя ввод и проверяет, что это число с плавающей запятой.
      *
-     * @param userInput строка, введенная пользователем.
      * @return Валидированное значение координаты Y.
      */
-    public double validation(String userInput) {
+    public double validation(String input) {
         while (true) {
             try {
-                String input;
-                input = userInput.trim();
                 this.y = Double.parseDouble(input);
                 return this.y;
             } catch (NumberFormatException e) {
-                out.println("Некорректный ввод: " + e.toString());
+                System.out.println("Некорректный ввод, попробуйте еще раз");
+                input = scanner.nextLine().trim();
             }
         }
     }

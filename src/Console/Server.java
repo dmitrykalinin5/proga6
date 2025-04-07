@@ -2,6 +2,8 @@ package Console;
 
 import Collections.CollectionManager;
 import Commands.CommandProcessor;
+import Network.Request;
+import Network.Response;
 
 import java.io.*;
 import java.net.Socket;
@@ -28,32 +30,45 @@ public class Server {
 
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
-                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                     PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+                     ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+                     ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());) {
 
-                    commandProcessor = new CommandProcessor(collectionManager, historyDeque, in, out);
+                    commandProcessor = new CommandProcessor(collectionManager, historyDeque, out, in, "server");
+                    commandProcessor.CommandPut();
 
                     System.out.println("Клиент подключен");
 
-                    String command;
-                    while ((command = in.readLine()) != null) {
-                        String response = executeCommand(command);
-                        out.println(response + "\u202F");
-                    }
+                    while (true) {
+                        Object obj = in.readObject(); // 🟡 Блокирующий вызов: ждет объект от клиента
+                        if (obj instanceof Request request) {
+                            String command = request.commandName();
+                            Object argument = request.argument();
 
-                    System.out.println("Клиент отключился");
-                } catch (IOException e) {
-                    System.out.println("Клиент отключился");
+                            System.out.println("Получена команда: " + command);
+
+                            // Тут логика обработки
+                            String responseText = "Команда принята: " + command;
+
+                            out.writeObject(new Response(responseText));
+                            out.flush();
+                        }
+
+                        System.out.println("Команда выполнена, ответ отправлен клиенту");
+
+                        System.out.println("Клиент отключился");
+                    }
+                } catch (ClassNotFoundException | IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         } catch (IOException e) {
-            System.err.println("Ошибка при запуске сервера " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    public String executeCommand(String command) {
+    public void executeCommand(String command) {
         commandProcessor.CommandPut();
-        return commandProcessor.executeCommand(command);
+//        return commandProcessor.executeCommand(command);
     }
 
     public static void main(String[] args) {

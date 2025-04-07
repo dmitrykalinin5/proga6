@@ -3,10 +3,6 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 import Console.Client;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -15,48 +11,31 @@ import java.util.Scanner;
  */
 public class WeightValidation implements Validation {
     private int weight;
-    private CommandProcessor commandProcessor;
-    private BufferedReader in;
-    private PrintWriter out;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public WeightValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
-        this.commandProcessor = commandProcessor;
+    public WeightValidation(String userInput) {
         validation(userInput);
-        this.in = in;
-        this.out = out;
     }
 
     /**
      * Метод для валидации веса.
      * Запрашивает у пользователя ввод и проверяет, что вес больше 0.
      *
-     * @param userInput строка, введенная пользователем.
      * @return Валидированное значение веса.
      */
-    public int validation(String userInput) {
+    public int validation(String input) {
         while (true) {
             try {
-                String input;
-                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
-                if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim();
-                } else {
-                    input = userInput.trim();
-                }
                 this.weight = Integer.parseInt(input);
                 if (!validate()) {
-                    assert out != null;
-                    out.println("Вес должен быть больше 0, попробуйте еще раз: \u00A0");
-                    assert in != null;
-                    userInput = in.readLine();
+                    System.out.println("Вес должен быть больше 0, попробуйте еще раз");
+                    input = scanner.nextLine().trim();
                     continue;
                 }
                 return this.weight;
             } catch (NumberFormatException | NullPointerException e) {
-                assert out != null;
-                out.println("Некорректный ввод: " + e.getMessage());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println("Некорректный ввод, попробуйте еще раз");
+                input = scanner.nextLine().trim();
             }
         }
     }
@@ -66,7 +45,7 @@ public class WeightValidation implements Validation {
      *
      * @return Введенный вес.
      */
-    public int getWeight() {
+    public int getweight() {
         return weight;
     }
 
@@ -88,6 +67,10 @@ public class WeightValidation implements Validation {
      */
     @Override
     public String getErrorMessage() {
-        return "Ошибка в весе";  // Теперь это сообщение соответствует весу, а не росту
+        return "Ошибка в росте";  // Возможно, это сообщение должно быть более специфичным для веса, например, "Ошибка в весе"
+    }
+
+    public int getWeight() {
+        return weight;
     }
 }

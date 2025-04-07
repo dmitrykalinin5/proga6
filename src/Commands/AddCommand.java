@@ -25,8 +25,8 @@ public class AddCommand implements Command {
     private final CollectionManager collectionManager;
     private final CommandProcessor commandProcessor;
     private String result;
-    private BufferedReader in;
-    private PrintWriter out;
+    private Ticket ticket;
+    private final Scanner scanner = new Scanner(System.in);
 
     /**
      * Конструктор для создания команды добавления элемента.
@@ -34,11 +34,9 @@ public class AddCommand implements Command {
      * @param collectionManager Менеджер коллекции, в которую будет добавлен элемент
      * @param commandProcessor Обработчик команд
      */
-    public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor, BufferedReader in, PrintWriter out) {
+    public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
         this.commandProcessor = commandProcessor;
-        this.in = in;
-        this.out = out;
     }
 
     /**
@@ -50,92 +48,87 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        int newId = collectionManager.getNextId();
+        int newId;
+        try {
+            newId = collectionManager.getNextId();
+        } catch (NullPointerException e) {
+            newId = 1;
+        }
 
         try {
+            System.out.print("Введите ваше имя: ");
             String userInput;
-            if (commandProcessor.getScriptFlag()) {
-                out.println("Введите ваше имя: ");
-                userInput = commandProcessor.getNextCommand().trim();
-                out.println(userInput);
-            } else {
-                out.println("Введите ваше имя:\u00A0");
-                userInput = in.readLine();
-            }
-
-            System.out.println("name: " + userInput);
-            NameValidation nameValidation = new NameValidation(commandProcessor, userInput, in, out);
+            if (commandProcessor.getScriptFlag()) { userInput = commandProcessor.getNextCommand().trim(); } else { userInput = scanner.nextLine(); }
+            NameValidation nameValidation = new NameValidation(userInput);
             String name = nameValidation.getName();
 
-            out.println("--Ввод координат--");
+            System.out.println("--Ввод координат--");
+            System.out.print("Введите координату x: ");
             String xInput;
-            if (commandProcessor.getScriptFlag()) {
-                out.println("Введите координату x: ");
-                xInput = commandProcessor.getNextCommand().trim();
-                out.println(xInput);
-            } else {
-                out.println("Введите координату x:\u00A0 ");
-                xInput = in.readLine();
-            }
-            XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(commandProcessor, xInput, in, out);
+            if (commandProcessor.getScriptFlag()) { xInput = commandProcessor.getNextCommand().trim(); } else { xInput = scanner.nextLine(); }
+            XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(xInput);
             int x = xCoordinateValidation.getX();
 
             String yInput;
-            if (commandProcessor.getScriptFlag()) {
-                out.println("Введите координату y: ");
-                yInput = commandProcessor.getNextCommand().trim();
-                out.println(xInput);
-            } else {
-                out.println("Введите координату y:\u00A0 ");
-                yInput = in.readLine();
-            }
-            YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(commandProcessor, yInput, in, out);
+            System.out.print("Введите координату y: ");
+            if (commandProcessor.getScriptFlag()) { yInput = commandProcessor.getNextCommand().trim(); } else { yInput = scanner.nextLine(); }
+            YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(yInput);
             double y = yCoordinateValidation.getY();
             Coordinates coordinates = new Coordinates(x, y);
 
             LocalDateTime date = LocalDateTime.now();
 
-            out.println("Введите цену:\u00A0 ");
-            String priceInput = in.readLine();
-            PriceValidation priceValidation = new PriceValidation(commandProcessor, priceInput, in, out);
+            String priceInput;
+            System.out.print("Введите цену: ");
+            if (commandProcessor.getScriptFlag()) { priceInput = commandProcessor.getNextCommand().trim(); } else { priceInput = scanner.nextLine(); }
+            PriceValidation priceValidation = new PriceValidation(priceInput);
             Long price = priceValidation.getPrice();
 
-            out.println("Введите тип билета (VIP, USUAL, CHEAP):\u00A0 ");
-            String typeInput = in.readLine();
-            TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(commandProcessor, typeInput, in, out);
+            System.out.print("Введите тип билета (VIP, USUAL, CHEAP): ");
+            String typeInput;
+            if (commandProcessor.getScriptFlag()) { typeInput = commandProcessor.getNextCommand().trim(); } else { typeInput = scanner.nextLine(); }
+            TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(typeInput);
             TicketType ticketType = ticketTypeValidation.getTicketType();
 
-            out.println("Введите дату рождения в формате DD.MM.YYYY:\u00A0 ");
-            String birthdayInput = in.readLine();
-            BirthdayValidation birthdayValidation = new BirthdayValidation(commandProcessor, birthdayInput, in, out);
+            System.out.print("Введите дату рождения в формате DD.MM.YYYY: ");
+            String birthdayInput;
+            if (commandProcessor.getScriptFlag()) { birthdayInput = commandProcessor.getNextCommand().trim(); } else { birthdayInput = scanner.nextLine(); }
+            BirthdayValidation birthdayValidation = new BirthdayValidation(birthdayInput);
             String birthdayString = birthdayValidation.getBirthday();
             LocalDate localdate = LocalDate.parse(birthdayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             ZonedDateTime birthday = localdate.atStartOfDay(ZoneId.systemDefault());
 
-            out.println("Введите ваш рост:\u00A0 ");
-            String heightInput = in.readLine();
-            HeightValidation heightValidation = new HeightValidation(commandProcessor, heightInput, in, out);
+            System.out.print("Введите ваш рост: ");
+            String heightInput;
+            if (commandProcessor.getScriptFlag()) { heightInput = commandProcessor.getNextCommand().trim(); } else { heightInput = scanner.nextLine(); }
+            HeightValidation heightValidation = new HeightValidation(heightInput);
             Long height = heightValidation.getHeight();
 
-            out.println("Введите ваш вес:\u00A0 ");
-            String weightInput = in.readLine();
-            WeightValidation weightValidation = new WeightValidation(commandProcessor, weightInput, in, out);
+            System.out.print("Введите ваш вес: ");
+            String weightInput;
+            if (commandProcessor.getScriptFlag()) { weightInput = commandProcessor.getNextCommand().trim(); } else { weightInput = scanner.nextLine(); }
+            WeightValidation weightValidation = new WeightValidation(weightInput);
             int weight = weightValidation.getWeight();
 
-            out.println("Введите координаты вашей локации через пробел (x y z):\u00A0 ");
-            String locationInput = in.readLine();
-            LocationValidation locationValidation = new LocationValidation(commandProcessor, locationInput, in, out);
+            System.out.print("Введите координаты вашей локации через пробел (x y z): ");
+            String locationInput;
+            if (commandProcessor.getScriptFlag()) { locationInput = commandProcessor.getNextCommand().trim(); } else { locationInput = scanner.nextLine(); }
+            LocationValidation locationValidation = new LocationValidation(locationInput);
             Location location = locationValidation.getLocation();
 
             Person person = new Person(birthday, height, weight, location);
-            Ticket ticket = new Ticket(newId, name, coordinates, date, price, ticketType, person);
-            this.collectionManager.getQueue().add(ticket);
+            this.ticket = new Ticket(newId, name, coordinates, date, price, ticketType, person);
 
-            response("Элемент добавлен.");
-            // writer.println("Элемент добавлен");
-        } catch (IOException e) {
-            response("Ошибка ввода/вывода: " + e.getMessage());
+            getResult();
+
+//            this.collectionManager.getQueue().add(ticket);
+        } catch (NumberFormatException e) {
+            response("Некорректный ввод: " + e.getMessage());
         }
+    }
+
+    public Ticket getResult() {
+        return this.ticket;
     }
 
     @Override

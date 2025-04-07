@@ -3,8 +3,6 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -15,40 +13,21 @@ import java.util.Scanner;
  */
 public class BirthdayValidation implements Validation {
     private String birthday;
-    private CommandProcessor commandProcessor;
-    private BufferedReader in;
-    private PrintWriter out;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public BirthdayValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
-        this.commandProcessor = commandProcessor;
+    public BirthdayValidation(String userInput) {
         validation(userInput);
-        this.in = in;
-        this.out = out;
     }
 
-    /**
-     * Метод для валидации введенной даты рождения.
-     * Запрашивает ввод даты у пользователя, проверяет ее корректность и возвращает правильную дату.
-     *
-     * @return Корректно введенная дата рождения в формате "dd.mm.yyyy".
-     */
-    public String validation(String userInput) {
+    public String validation(String input) {
         int[] months31 = {1, 3, 5, 7, 8, 10, 12};
         int[] months30 = {4, 6, 9, 11};
         while (true) {
             try {
-//                System.out.print(message);
-                String input;
-                if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim();
-                } else {
-                    input = userInput.trim();
-                }
                 this.birthday = input;
                 String[] inputSplit = this.birthday.split("\\.");
                 if (inputSplit[0].length() != 2 || inputSplit[1].length() != 2 || inputSplit[2].length() != 4) {
-                    assert out != null;
-                    out.println("Некорректный ввод \u00A0");
+                    System.out.println("Некорректный ввод");
                     continue;
                 }
                 int day = Integer.parseInt(inputSplit[0]);
@@ -61,13 +40,15 @@ public class BirthdayValidation implements Validation {
                         || (day >= 1 && day <= 28 && month == 2 && !(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))) && year > 0) {
                     return this.birthday;
                 } else {
-                    assert out != null;
-                    out.println("Некорректный ввод");
+                    System.out.println("Некорректный ввод, попробуйте еще раз");
+                    input = scanner.nextLine().trim();
                 }
             } catch (NullPointerException e) {
-                out.println("Дата не может быть null");
+                System.out.println("Дата не может быть null, попробуйте еще раз");
+                input = scanner.nextLine().trim();
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                out.println("Некорректный ввод");
+                System.out.println("Некорректный ввод, попробуйте еще раз");
+                input = scanner.nextLine().trim();
             }
         }
     }

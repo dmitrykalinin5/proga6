@@ -23,7 +23,7 @@ public class ExitCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        this.commandProcessor.ServerCommandPut();
+        this.commandProcessor.CommandPut();
         this.commandProcessor.executeCommand("save");
         response("Завершение программы..");
     }

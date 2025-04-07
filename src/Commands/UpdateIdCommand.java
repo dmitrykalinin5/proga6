@@ -24,9 +24,8 @@ public class UpdateIdCommand implements Command {
     private final Deque<String> historyDeque;
     private CommandProcessor commandProcessor;
     private PriorityQueue<Ticket> queue;
-    private BufferedReader in;
-    private PrintWriter out;
     private String result;
+    private Scanner scanner;
 
     /**
      * Конструктор для создания объекта UpdateIdCommand.
@@ -35,12 +34,10 @@ public class UpdateIdCommand implements Command {
      * @param historyDeque Очередь команд, предназначенная для хранения истории выполнения.
      * @param commandProcessor Обработчик команд, используемый для выполнения команд в скрипте.
      */
-    public UpdateIdCommand(CollectionManager collectionManager, Deque<String> historyDeque, CommandProcessor commandProcessor, BufferedReader in, PrintWriter out) {
+    public UpdateIdCommand(CollectionManager collectionManager, Deque<String> historyDeque, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
         this.historyDeque = historyDeque;
         this.commandProcessor = commandProcessor;
-        this.in = in;
-        this.out = out;
     }
 
     /**
@@ -71,22 +68,20 @@ public class UpdateIdCommand implements Command {
                         input = commandProcessor.getNextCommand().trim(); // Ввод из скрипта
                         System.out.println(input);
                     } else {
-                        out.println("Какой элемент вы хотите обновить? (имя, координаты, цена, тип билета, дата рождения, рост, вес, локация): \u00A0");
-                        input = in.readLine().trim(); // Ввод с клавиатуры
+                        System.out.println("Какой элемент вы хотите обновить? (имя, координаты, цена, тип билета, дата рождения, рост, вес, локация): ");
+                        input = scanner.nextLine().trim(); // Ввод с клавиатуры
                     }
                     boolean isUpdated = update(id, input); // Попытка обновить элемент
                     if (isUpdated) {
                         break; // Если обновление прошло успешно, выходим из цикла
                     } else {
-                        out.println("Некорректный ввод"); // Если ввод некорректный, просим повторить
+                        System.out.println("Некорректный ввод"); // Если ввод некорректный, просим повторить
                     }
                 }
                 response("Данные обновлены");
             } else {response("Неверный айди");}
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             response("Некорректный ввод");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -100,43 +95,47 @@ public class UpdateIdCommand implements Command {
                     String userInput;
                     switch (element.toLowerCase()) {
                         case "имя":
-                            out.println("Введите обновленное имя: \u00A0");
-                            userInput = in.readLine();
-                            NameValidation nameValidation = new NameValidation(commandProcessor, userInput, in, out);
+                            System.out.print("Введите обновленное имя: ");
+                            if (commandProcessor.getScriptFlag()) { userInput = commandProcessor.getNextCommand().trim(); } else { userInput = scanner.nextLine(); }
+                            NameValidation nameValidation = new NameValidation(userInput);
                             String name = nameValidation.getName();
                             ticket.setName(name);
                             return true;
                         case "координаты":
-                            out.println("--Ввод новых координат--");
-                            out.println("Введите обновленную координату x: \u00A0");
-                            userInput = in.readLine();
-                            XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(commandProcessor, userInput, in, out);
+                            System.out.println("--Ввод координат--");
+                            System.out.print("Введите обновленную координату x: ");
+                            String xInput;
+                            if (commandProcessor.getScriptFlag()) { xInput = commandProcessor.getNextCommand().trim(); } else { xInput = scanner.nextLine(); }
+                            XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(xInput);
                             int x = xCoordinateValidation.getX();
-                            out.println("Введите обновленную координату y: \u00A0");
-                            userInput = in.readLine();
-                            YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(commandProcessor, userInput, in, out);
+                            String yInput;
+                            System.out.print("Введите обновленную координату y: ");
+                            if (commandProcessor.getScriptFlag()) { yInput = commandProcessor.getNextCommand().trim(); } else { yInput = scanner.nextLine(); }
+                            YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(yInput);
                             double y = yCoordinateValidation.getY();
                             Coordinates coords = new Coordinates(x, y);
                             ticket.setCoordinates(coords);
                             return true;
                         case "цена":
-                            out.println("Введите обновленную цену: \u00A0");
-                            userInput = in.readLine();
-                            PriceValidation priceValidation = new PriceValidation(commandProcessor, userInput, in, out);
+                            String priceInput;
+                            System.out.print("Введите обновленную цену: ");
+                            if (commandProcessor.getScriptFlag()) { priceInput = commandProcessor.getNextCommand().trim(); } else { priceInput = scanner.nextLine(); }
+                            PriceValidation priceValidation = new PriceValidation(priceInput);
                             Long price = priceValidation.getPrice();
                             ticket.setPrice(price);
                             return true;
                         case "тип билета":
-                            out.println("Введите обновленный тип билета (VIP, USUAL, CHEAP): \u00A0");
-                            userInput = in.readLine();
-                            TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(commandProcessor, userInput, in, out);
+                            System.out.print("Введите обновленный тип билета (VIP, USUAL, CHEAP): ");
+                            String typeInput;
+                            if (commandProcessor.getScriptFlag()) { typeInput = commandProcessor.getNextCommand().trim(); } else { typeInput = scanner.nextLine(); }
+                            TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(typeInput);
                             TicketType ticketType = ticketTypeValidation.getTicketType();
                             ticket.setType(ticketType);
                             return true;
                         case "дата рождения":
-                            out.println("Введите обновленную дату рождения в формате DD.MM.YYYY: \u00A0");
-                            userInput = in.readLine();
-                            BirthdayValidation birthdayValidation = new BirthdayValidation(commandProcessor, userInput, in, out);
+                            System.out.print("Введите обновленную дату рождения в формате DD.MM.YYYY: ");
+                            if (commandProcessor.getScriptFlag()) { userInput = commandProcessor.getNextCommand().trim(); } else { userInput = scanner.nextLine(); }
+                            BirthdayValidation birthdayValidation = new BirthdayValidation(userInput);
                             String birthdayInput = birthdayValidation.getBirthday();
                             // парсинг даты из формата DD.MM.YYYY в ZonedDateTime
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -145,23 +144,26 @@ public class UpdateIdCommand implements Command {
                             ticket.setBirthday(birthday);
                             return true;
                         case "рост":
-                            out.println("Введите обновленный рост: \u00A0");
-                            userInput = in.readLine();
-                            HeightValidation heightValidation = new HeightValidation(commandProcessor, userInput, in, out);
+                            System.out.print("Введите ваш обновленный рост: ");
+                            String heightInput;
+                            if (commandProcessor.getScriptFlag()) { heightInput = commandProcessor.getNextCommand().trim(); } else { heightInput = scanner.nextLine(); }
+                            HeightValidation heightValidation = new HeightValidation(heightInput);
                             Long height = heightValidation.getHeight();
                             ticket.setHeight(height);
                             return true;
                         case "вес":
-                            out.println("Введите обновленный вес: \u00A0");
-                            userInput = in.readLine();
-                            WeightValidation weightValidation = new WeightValidation(commandProcessor, userInput, in, out);
+                            System.out.print("Введите ваш обновленный вес: ");
+                            String weightInput;
+                            if (commandProcessor.getScriptFlag()) { weightInput = commandProcessor.getNextCommand().trim(); } else { weightInput = scanner.nextLine(); }
+                            WeightValidation weightValidation = new WeightValidation(weightInput);
                             int weight = weightValidation.getWeight();
                             ticket.setWeight(weight);
                             return true;
                         case "локация":
-                            out.println("Введите обновленные значения координат через пробел (x y z): \u00A0");
-                            userInput = in.readLine();
-                            LocationValidation locationValidation = new LocationValidation(commandProcessor, userInput, in, out);
+                            System.out.print("Введите обновленные координаты вашей локации через пробел (x y z): ");
+                            String locationInput;
+                            if (commandProcessor.getScriptFlag()) { locationInput = commandProcessor.getNextCommand().trim(); } else { locationInput = scanner.nextLine(); }
+                            LocationValidation locationValidation = new LocationValidation(locationInput);
                             Location loc = locationValidation.getLocation();
                             ticket.setLocation(loc);
                             return true;
@@ -169,9 +171,7 @@ public class UpdateIdCommand implements Command {
                 }
             }
         } catch (NoSuchElementException e) {
-            out.println("Такого элемента не существует");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Такого элемента не существует");
         }
         return false;
     }

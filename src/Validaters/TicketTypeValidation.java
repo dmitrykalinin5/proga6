@@ -3,45 +3,30 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 import Collections.TicketType;
+import Console.Client;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+import java.util.Scanner;
 
+/**
+ * Класс для валидации типа билета.
+ * Проверяет, что введенный тип билета является допустимым значением из перечисления TicketType.
+ */
 public class TicketTypeValidation implements Validation {
     private TicketType ticketType;
-    private CommandProcessor commandProcessor;
-    private BufferedReader in;
-    private PrintWriter out;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public TicketTypeValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
-        this.commandProcessor = commandProcessor;
+    public TicketTypeValidation(String userInput) {
         validation(userInput);
-        this.in = in;
-        this.out = out;
     }
 
-    /**
-     * Метод для валидации типа билета.
-     * Запрашивает у пользователя ввод и проверяет, что введенный тип является допустимым значением из перечисления TicketType.
-     *
-     * @param userInput строка, введенная пользователем.
-     * @return Валидированное значение типа билета.
-     */
-    public TicketType validation(String userInput) {
+    public TicketType validation(String input) {
         while (true) {
             try {
-                String input;
-                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
-                if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim();
-                } else {
-                    input = userInput.trim();
-                }
                 this.ticketType = TicketType.valueOf(input.toUpperCase());
                 return ticketType;
             } catch (IllegalArgumentException e) {
-                assert out != null;
-                out.println("Неправильный формат ввода");
+                System.out.println("Неправильный формат ввода, попробуйте еще раз");
+                input = scanner.nextLine().trim();
             }
         }
     }
