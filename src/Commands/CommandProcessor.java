@@ -48,7 +48,7 @@ public class CommandProcessor {
 
         // Команды с аргументами
         commands.put("add", new AddCommand(collectionManager, this, reader, writer));
-        commands.put("update", new UpdateIdCommand(collectionManager, historyDeque, this));
+        commands.put("update", new UpdateIdCommand(collectionManager, historyDeque, this, reader, writer));
         commands.put("remove_by_id", new RemoveByIdCommand(collectionManager));
         commands.put("execute_script", new ExecuteScriptCommand(this));
         commands.put("remove_all_by_price", new RemoveAllByPriceCommand(collectionManager));
@@ -80,7 +80,7 @@ public class CommandProcessor {
             saveCommand(parts[0]);
             return command.getResponse();
         } catch (NullPointerException exception) {
-            return "Такой команды не существует";
+            return "Некорректный ввод";
         }
     }
 

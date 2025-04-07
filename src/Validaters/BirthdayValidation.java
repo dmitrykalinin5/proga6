@@ -3,6 +3,8 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -13,13 +15,15 @@ import java.util.Scanner;
  */
 public class BirthdayValidation implements Validation {
     private String birthday;
-//    private final String message;
     private CommandProcessor commandProcessor;
+    private BufferedReader in;
+    private PrintWriter out;
 
-    public BirthdayValidation(CommandProcessor commandProcessor, String userInput) {
-//        this.message = message;
+    public BirthdayValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
         this.commandProcessor = commandProcessor;
         validation(userInput);
+        this.in = in;
+        this.out = out;
     }
 
     /**
@@ -43,7 +47,8 @@ public class BirthdayValidation implements Validation {
                 this.birthday = input;
                 String[] inputSplit = this.birthday.split("\\.");
                 if (inputSplit[0].length() != 2 || inputSplit[1].length() != 2 || inputSplit[2].length() != 4) {
-                    System.out.println("Некорректный ввод");
+                    assert out != null;
+                    out.println("Некорректный ввод \u00A0");
                     continue;
                 }
                 int day = Integer.parseInt(inputSplit[0]);
@@ -56,12 +61,13 @@ public class BirthdayValidation implements Validation {
                         || (day >= 1 && day <= 28 && month == 2 && !(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))) && year > 0) {
                     return this.birthday;
                 } else {
-                    System.out.println("Некорректный ввод");
+                    assert out != null;
+                    out.println("Некорректный ввод");
                 }
             } catch (NullPointerException e) {
-                System.out.println("Дата не может быть null");
+                out.println("Дата не может быть null");
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Некорректный ввод");
+                out.println("Некорректный ввод");
             }
         }
     }

@@ -3,19 +3,20 @@ package Validaters;
 import Commands.CommandProcessor;
 import Tools.Validation;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
 public class YCoordinateValidation implements Validation {
     private double y;
     private CommandProcessor commandProcessor;
+    private BufferedReader in;
+    private PrintWriter out;
 
-    /**
-     * Конструктор класса YCoordinateValidation.
-     *
-     * @param commandProcessor Объект для обработки команд, включая работу с флагом скрипта.
-     * @param userInput Ввод пользователя, полученный извне.
-     */
-    public YCoordinateValidation(CommandProcessor commandProcessor, String userInput) {
+    public YCoordinateValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
         this.commandProcessor = commandProcessor;
         validation(userInput);
+        this.in = in;
+        this.out = out;
     }
 
     /**
@@ -29,16 +30,11 @@ public class YCoordinateValidation implements Validation {
         while (true) {
             try {
                 String input;
-                // Если скрипт выполняется, получаем команду из скрипта, иначе используем переданный userInput
-                if (commandProcessor.getScriptFlag()) {
-                    input = commandProcessor.getNextCommand().trim();
-                } else {
-                    input = userInput.trim();
-                }
+                input = userInput.trim();
                 this.y = Double.parseDouble(input);
                 return this.y;
             } catch (NumberFormatException e) {
-                System.out.println("Некорректный ввод: " + e.toString());
+                out.println("Некорректный ввод: " + e.toString());
             }
         }
     }

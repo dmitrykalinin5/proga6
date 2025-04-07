@@ -28,17 +28,17 @@ public class Server {
 
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
-                     BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                     PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
+                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                     PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-                    commandProcessor = new CommandProcessor(collectionManager, historyDeque, reader, writer);
+                    commandProcessor = new CommandProcessor(collectionManager, historyDeque, in, out);
 
                     System.out.println("Клиент подключен");
 
                     String command;
-                    while ((command = reader.readLine()) != null) {
+                    while ((command = in.readLine()) != null) {
                         String response = executeCommand(command);
-                        writer.println(response + "\u202F");
+                        out.println(response + "\u202F");
                     }
 
                     System.out.println("Клиент отключился");

@@ -4,19 +4,20 @@ import Commands.CommandProcessor;
 import Tools.Validation;
 import Collections.TicketType;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
 public class TicketTypeValidation implements Validation {
     private TicketType ticketType;
     private CommandProcessor commandProcessor;
+    private BufferedReader in;
+    private PrintWriter out;
 
-    /**
-     * Конструктор класса TicketTypeValidation.
-     *
-     * @param commandProcessor Объект для обработки команд, включая работу с флагом скрипта.
-     * @param userInput Ввод пользователя, полученный извне.
-     */
-    public TicketTypeValidation(CommandProcessor commandProcessor, String userInput) {
+    public TicketTypeValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
         this.commandProcessor = commandProcessor;
         validation(userInput);
+        this.in = in;
+        this.out = out;
     }
 
     /**
@@ -39,7 +40,8 @@ public class TicketTypeValidation implements Validation {
                 this.ticketType = TicketType.valueOf(input.toUpperCase());
                 return ticketType;
             } catch (IllegalArgumentException e) {
-                System.out.println("Неправильный формат ввода");
+                assert out != null;
+                out.println("Неправильный формат ввода");
             }
         }
     }

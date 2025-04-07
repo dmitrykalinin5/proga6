@@ -14,11 +14,17 @@
       <change beforePath="$PROJECT_DIR$/collection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/collection.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AddCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ShowCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UpdateIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/BirthdayValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/BirthdayValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/HeightValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/HeightValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/LocationValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/LocationValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/NameValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/NameValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/PriceValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/PriceValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/TicketTypeValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/TicketTypeValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/WeightValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/WeightValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/XCoordinateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/XCoordinateValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validaters/YCoordinateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/YCoordinateValidation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +171,7 @@
       <workItem from="1743413803528" duration="4767000" />
       <workItem from="1743419627847" duration="231000" />
       <workItem from="1743419867980" duration="3322000" />
-      <workItem from="1743940309712" duration="24566000" />
+      <workItem from="1743940309712" duration="31260000" />
     </task>
     <task id="LOCAL-00001" summary="Новая команда">
       <option name="closed" value="true" />
@@ -415,7 +421,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743958811469</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="--">
+      <option name="closed" value="true" />
+      <created>1743976310588</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1743976310588</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

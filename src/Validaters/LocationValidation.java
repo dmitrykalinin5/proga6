@@ -4,6 +4,9 @@ import Collections.Location;
 import Commands.CommandProcessor;
 import Tools.Validation;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -13,16 +16,14 @@ import java.util.Scanner;
 public class LocationValidation implements Validation {
     private Location location;
     private CommandProcessor commandProcessor;
+    private BufferedReader in;
+    private PrintWriter out;
 
-    /**
-     * Конструктор класса.
-     *
-     * @param commandProcessor Компонент для обработки команд (например, для выполнения скриптов).
-     * @param userInput Ввод пользователя, полученный извне.
-     */
-    public LocationValidation(CommandProcessor commandProcessor, String userInput) {
+    public LocationValidation(CommandProcessor commandProcessor, String userInput, BufferedReader in, PrintWriter out) {
         this.commandProcessor = commandProcessor;
         validation(userInput);
+        this.in = in;
+        this.out = out;
     }
 
     /**
@@ -40,7 +41,10 @@ public class LocationValidation implements Validation {
                 String[] elements = input.split(" ");
                 // Проверяем, что введены 3 элемента
                 if (elements.length != 3) {
-                    System.out.println("Неверное количество элементов. Введите 3 значения.");
+                    assert out != null;
+                    out.println("Неверное количество элементов. Введите 3 значения. \u00A0");
+                    assert in != null;
+                    userInput = in.readLine();
                     continue;
                 }
 
@@ -53,7 +57,9 @@ public class LocationValidation implements Validation {
                 this.location = new Location(x, y, z);
                 return this.location;
             } catch (NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Некорректный ввод. Убедитесь, что все три значения числовые.");
+                out.println("Некорректный ввод. Убедитесь, что все три значения числовые.");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }

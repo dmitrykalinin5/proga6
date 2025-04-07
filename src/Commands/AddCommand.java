@@ -25,8 +25,8 @@ public class AddCommand implements Command {
     private final CollectionManager collectionManager;
     private final CommandProcessor commandProcessor;
     private String result;
-    private BufferedReader reader;
-    private PrintWriter writer;
+    private BufferedReader in;
+    private PrintWriter out;
 
     /**
      * Конструктор для создания команды добавления элемента.
@@ -34,11 +34,11 @@ public class AddCommand implements Command {
      * @param collectionManager Менеджер коллекции, в которую будет добавлен элемент
      * @param commandProcessor Обработчик команд
      */
-    public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor, BufferedReader reader, PrintWriter writer) {
+    public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor, BufferedReader in, PrintWriter out) {
         this.collectionManager = collectionManager;
         this.commandProcessor = commandProcessor;
-        this.reader = reader;
-        this.writer = writer;
+        this.in = in;
+        this.out = out;
     }
 
     /**
@@ -53,57 +53,78 @@ public class AddCommand implements Command {
         int newId = collectionManager.getNextId();
 
         try {
-            writer.println("Введите ваше имя:\u00A0");
-            String userInput = reader.readLine();
+            String userInput;
+            if (commandProcessor.getScriptFlag()) {
+                out.println("Введите ваше имя: ");
+                userInput = commandProcessor.getNextCommand().trim();
+                out.println(userInput);
+            } else {
+                out.println("Введите ваше имя:\u00A0");
+                userInput = in.readLine();
+            }
+
             System.out.println("name: " + userInput);
-            NameValidation nameValidation = new NameValidation(commandProcessor, userInput);
+            NameValidation nameValidation = new NameValidation(commandProcessor, userInput, in, out);
             String name = nameValidation.getName();
 
-            writer.println("--Ввод координат--");
-
-            writer.println("Введите координату x:\u00A0 ");
-            String xInput = reader.readLine();
-            XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(commandProcessor, xInput);
+            out.println("--Ввод координат--");
+            String xInput;
+            if (commandProcessor.getScriptFlag()) {
+                out.println("Введите координату x: ");
+                xInput = commandProcessor.getNextCommand().trim();
+                out.println(xInput);
+            } else {
+                out.println("Введите координату x:\u00A0 ");
+                xInput = in.readLine();
+            }
+            XCoordinateValidation xCoordinateValidation = new XCoordinateValidation(commandProcessor, xInput, in, out);
             int x = xCoordinateValidation.getX();
 
-            writer.println("Введите координату y:\u00A0 ");
-            String yInput = reader.readLine();
-            YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(commandProcessor, yInput);
+            String yInput;
+            if (commandProcessor.getScriptFlag()) {
+                out.println("Введите координату y: ");
+                yInput = commandProcessor.getNextCommand().trim();
+                out.println(xInput);
+            } else {
+                out.println("Введите координату y:\u00A0 ");
+                yInput = in.readLine();
+            }
+            YCoordinateValidation yCoordinateValidation = new YCoordinateValidation(commandProcessor, yInput, in, out);
             double y = yCoordinateValidation.getY();
             Coordinates coordinates = new Coordinates(x, y);
 
             LocalDateTime date = LocalDateTime.now();
 
-            writer.println("Введите цену:\u00A0 ");
-            String priceInput = reader.readLine();
-            PriceValidation priceValidation = new PriceValidation(commandProcessor, priceInput);
+            out.println("Введите цену:\u00A0 ");
+            String priceInput = in.readLine();
+            PriceValidation priceValidation = new PriceValidation(commandProcessor, priceInput, in, out);
             Long price = priceValidation.getPrice();
 
-            writer.println("Введите тип билета (VIP, USUAL, CHEAP):\u00A0 ");
-            String typeInput = reader.readLine();
-            TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(commandProcessor, typeInput);
+            out.println("Введите тип билета (VIP, USUAL, CHEAP):\u00A0 ");
+            String typeInput = in.readLine();
+            TicketTypeValidation ticketTypeValidation = new TicketTypeValidation(commandProcessor, typeInput, in, out);
             TicketType ticketType = ticketTypeValidation.getTicketType();
 
-            writer.println("Введите дату рождения в формате DD.MM.YYYY:\u00A0 ");
-            String birthdayInput = reader.readLine();
-            BirthdayValidation birthdayValidation = new BirthdayValidation(commandProcessor, birthdayInput);
+            out.println("Введите дату рождения в формате DD.MM.YYYY:\u00A0 ");
+            String birthdayInput = in.readLine();
+            BirthdayValidation birthdayValidation = new BirthdayValidation(commandProcessor, birthdayInput, in, out);
             String birthdayString = birthdayValidation.getBirthday();
             LocalDate localdate = LocalDate.parse(birthdayString, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             ZonedDateTime birthday = localdate.atStartOfDay(ZoneId.systemDefault());
 
-            writer.println("Введите ваш рост:\u00A0 ");
-            String heightInput = reader.readLine();
-            HeightValidation heightValidation = new HeightValidation(commandProcessor, heightInput);
+            out.println("Введите ваш рост:\u00A0 ");
+            String heightInput = in.readLine();
+            HeightValidation heightValidation = new HeightValidation(commandProcessor, heightInput, in, out);
             Long height = heightValidation.getHeight();
 
-            writer.println("Введите ваш вес:\u00A0 ");
-            String weightInput = reader.readLine();
-            WeightValidation weightValidation = new WeightValidation(commandProcessor, weightInput);
+            out.println("Введите ваш вес:\u00A0 ");
+            String weightInput = in.readLine();
+            WeightValidation weightValidation = new WeightValidation(commandProcessor, weightInput, in, out);
             int weight = weightValidation.getWeight();
 
-            writer.println("Введите координаты вашей локации через пробел (x y z):\u00A0 ");
-            String locationInput = reader.readLine();
-            LocationValidation locationValidation = new LocationValidation(commandProcessor, locationInput);
+            out.println("Введите координаты вашей локации через пробел (x y z):\u00A0 ");
+            String locationInput = in.readLine();
+            LocationValidation locationValidation = new LocationValidation(commandProcessor, locationInput, in, out);
             Location location = locationValidation.getLocation();
 
             Person person = new Person(birthday, height, weight, location);
