@@ -10,9 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="--">
-      <change afterPath="$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/proga5_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/server.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Server.java" afterDir="false" />
     </list>
@@ -455,7 +454,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744110710275</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="--">
+      <option name="closed" value="true" />
+      <created>1744111210777</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1744111210777</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

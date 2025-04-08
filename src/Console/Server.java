@@ -29,7 +29,7 @@ public class Server {
     }
 
     public void run() {
-        try (ServerSocket serverSocket = new ServerSocket(9813)) {
+        try (ServerSocket serverSocket = new ServerSocket(6133)) {
             logger.info("Сервер запущен");
 
             while (true) {

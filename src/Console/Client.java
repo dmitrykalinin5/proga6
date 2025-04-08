@@ -30,7 +30,7 @@ public class Client {
     public static void main(String[] args) {
         commandProcessor.CommandPut();
 
-        try (Socket socket = new Socket("localhost", 9813);
+        try (Socket socket = new Socket("localhost", 6133);
              ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 

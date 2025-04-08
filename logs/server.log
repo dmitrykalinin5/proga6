@@ -23,3 +23,5 @@
 2025-04-08 14:10:44 [Thread-0] INFO  Console.Server - Клиент подключен
 2025-04-08 14:10:47 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
 2025-04-08 14:10:51 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 14:25:20 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 14:25:24 [Thread-0] INFO  Console.Server - Клиент подключен
