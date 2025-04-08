@@ -1,18 +1,19 @@
 package Commands;
 
 import Collections.CollectionManager;
-
+import Console.Server;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.BufferedInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
-import java.nio.Buffer;
 import java.util.*;
 
 /**
  * Класс для обработки команд, выполнения их и управления историей команд.
  */
 public class CommandProcessor {
-
+    private static final Logger logger = LogManager.getLogger(Server.class);
     private final Map<String, Command> commands = new HashMap<>();
     private final CollectionManager collectionManager;
     private Deque<String> historyDeque;
@@ -72,9 +73,9 @@ public class CommandProcessor {
     public void executeScript() {
         String currentCommand = getNextCommand();
         String[] args = currentCommand.split(" ");
-        System.out.println("Текущая команда: " + currentCommand);
+        logger.info("Текущая команда: " + currentCommand);
         if (args[0].equals("execute_script") && bannedFiles.contains(args[1])) {
-            System.out.println("Скрипт не может вызывать сам себя");
+            logger.error("Скрипт не может вызывать сам себя");
         } else {
             Command command = commands.get(args[0]);
             command.execute(args);
@@ -91,7 +92,7 @@ public class CommandProcessor {
             saveCommand(parts[0]);
             return command.getResponse();
         } catch (NullPointerException exception) {
-            return "Некорректный ввод " + exception.getMessage();
+            return "Некорректный ввод";
         }
     }
 
@@ -104,7 +105,7 @@ public class CommandProcessor {
             saveCommand(parts[0]);
             return command.getTicket();
         } catch (NullPointerException exception) {
-            System.out.println("Некорректный ввод 2 " + exception.getMessage());
+            System.out.println("Некорректный ввод");
         }
         return null;
     }
@@ -120,11 +121,6 @@ public class CommandProcessor {
         }
         this.historyDeque.addLast(command);
     }
-
-//    public void SetIOStreams(BufferedReader reader, PrintWriter writer) {
-//        this.reader = reader;
-//        this.writer = writer;
-//    }
 
     public BufferedInputStream getInputStream() {
         return new BufferedInputStream(in);

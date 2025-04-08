@@ -5,10 +5,12 @@ import Collections.Ticket;
 import Commands.CommandProcessor;
 import Network.Request;
 import Network.Response;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.net.SocketException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -16,6 +18,7 @@ import java.util.Deque;
  * Однопоточный сервер, принимающий команды по TCP
  */
 public class Server {
+    private static final Logger logger = LogManager.getLogger(Server.class);
     private static CollectionManager collectionManager = new CollectionManager();
     private static Deque<String> historyDeque = new ArrayDeque<>();
     private static CommandProcessor commandProcessor;
@@ -27,7 +30,7 @@ public class Server {
 
     public void run() {
         try (ServerSocket serverSocket = new ServerSocket(5000)) {
-            System.out.println("Сервер запущен");
+            logger.info("Сервер запущен");
 
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
@@ -37,7 +40,7 @@ public class Server {
                     commandProcessor = new CommandProcessor(collectionManager, historyDeque, out, in, "server");
                     commandProcessor.CommandPut();
 
-                    System.out.println("Клиент подключен");
+                    logger.info("Клиент подключен");
 
                     String responseText;
                     while (true) {
@@ -48,29 +51,30 @@ public class Server {
 
                             if (argument != null) {
                                 collectionManager.getQueue().add(argument);
-                                System.out.println("Элемент добавлен в коллекцию");
-                                responseText = "Все гуд";
+                                responseText = ("Элемент добавлен в коллекцию");
                             } else {
                                 responseText = commandProcessor.executeCommand(command);
-                                System.out.println("Команда без аргумента выполнена");
+                                logger.info("Команда без аргумента выполнена");
                             }
-
-//                            System.out.println("Получена команда: " + command);
-
-                            // Тут логика обработки
-//                            String responseText = "Команда принята: " + command;
 
                             out.writeObject(new Response(responseText));
                             out.flush();
+
+                            if ("exit".equals(command)) {
+                                logger.info("Клиент завершил сессию командой exit");
+                                break;
+                            }
                         }
 
-                        System.out.println("Команда выполнена, ответ отправлен клиенту");
+                        logger.info("Команда выполнена, ответ отправлен клиенту");
 
 
                     }
+                } catch (EOFException | SocketException e) {
+                    logger.error("Клиент отключился");
                 } catch (ClassNotFoundException | IOException e) {
-                    System.out.println("Клиент отключился");
-                    throw new RuntimeException(e);
+                    logger.error("Произошла ошибка при обработке клиента");
+                    e.printStackTrace(); // логируем ошибку
                 }
             }
         } catch (IOException e) {

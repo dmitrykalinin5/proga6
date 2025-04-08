@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tickets>
     <ticket>
-        <id>2</id>
-        <name>лох</name>
-        <coordinates>123, 123.0</coordinates>
-        <date>2025-04-07T00:40:20.314413600</date>
-        <price>123</price>
+        <id>1</id>
+        <name>dima</name>
+        <coordinates>12312, 232323.0</coordinates>
+        <date>2025-04-08T13:20:48.449106800</date>
+        <price>1000</price>
         <type>VIP</type>
-        <birthday>2000-01-21T00:00+03:00[Europe/Moscow]</birthday>
-        <height>145</height>
-        <weight>55</weight>
+        <birthday>2000-12-21T00:00+03:00[Europe/Moscow]</birthday>
+        <height>178</height>
+        <weight>65</weight>
         <location>1,1.0,1.0</location>
     </ticket>
     <ticket>
-        <id>3</id>
+        <id>2</id>
         <name>dima</name>
-        <coordinates>123, 123.0</coordinates>
-        <date>2025-04-08T12:03:25.612702400</date>
-        <price>123</price>
+        <coordinates>12312, 232323.0</coordinates>
+        <date>2025-04-08T13:21:44.302866200</date>
+        <price>1000</price>
         <type>VIP</type>
-        <birthday>2000-12-12T00:00+03:00[Europe/Moscow]</birthday>
-        <height>123</height>
-        <weight>123</weight>
-        <location>1,2.0,3.0</location>
+        <birthday>2000-12-21T00:00+03:00[Europe/Moscow]</birthday>
+        <height>178</height>
+        <weight>65</weight>
+        <location>1,1.0,1.0</location>
     </ticket>
 </Tickets>

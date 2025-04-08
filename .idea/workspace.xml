@@ -10,34 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="-">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/log4j_api_2_20_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/log4j_core_2_20_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/log4j2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/collection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/collection.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collections/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collections/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collections/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collections/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collections/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proga5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/proga5.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ClearCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ExecuteScriptCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ExitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/GroupCountingByPersonCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/GroupCountingByPersonCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/HistoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/HistoryCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/InfoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/MinByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/MinByIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveAllByPriceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveAllByPriceCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveByIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveFirstCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveFirstCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveHeadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveHeadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ShowCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UpdateIdCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Network/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/third.txt" beforeDir="false" afterPath="$PROJECT_DIR$/third.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,12 +74,13 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/kotuk/Downloads/log4j-core-2.20.0.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
@@ -178,7 +163,7 @@
       <workItem from="1743419627847" duration="231000" />
       <workItem from="1743419867980" duration="3322000" />
       <workItem from="1743940309712" duration="31260000" />
-      <workItem from="1744099435529" duration="4235000" />
+      <workItem from="1744099435529" duration="7187000" />
     </task>
     <task id="LOCAL-00001" summary="Новая команда">
       <option name="closed" value="true" />
@@ -452,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744066162592</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="-">
+      <option name="closed" value="true" />
+      <created>1744103725492</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1744103725492</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

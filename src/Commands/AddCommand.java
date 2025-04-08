@@ -48,9 +48,14 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        CollectionManager collectionManager = new CollectionManager();
-        collectionManager.loadFromFile();
-        int newId = collectionManager.getNextId();
+        int newId;
+        if (commandProcessor.getScriptFlag()) {
+            newId = collectionManager.getNextId();
+        } else {
+            CollectionManager collectionManager = new CollectionManager();
+            collectionManager.loadFromFile();
+            newId = collectionManager.getNextId();
+        }
 
         try {
             System.out.print("Введите ваше имя: ");
@@ -116,7 +121,7 @@ public class AddCommand implements Command {
             Person person = new Person(birthday, height, weight, location);
             this.ticket = new Ticket(newId, name, coordinates, date, price, ticketType, person);
 
-//            this.collectionManager.getQueue().add(ticket);
+            if (commandProcessor.getScriptFlag()) {this.collectionManager.getQueue().add(ticket);}
         } catch (NumberFormatException e) {
             response("Некорректный ввод: " + e.getMessage());
         }

@@ -55,9 +55,7 @@ public class Client {
                 Ticket argument = null;
                 if (commandProcessor.isClientCommand(input)) {
                     argument = (Ticket) commandProcessor.executeArgumentCommand(input);
-                    System.out.println("выполнено arg");
                 }
-                System.out.println("выполнено просто");
                 request = new Request(input, argument);
 
                 // Отправка запроса на сервер
@@ -66,7 +64,7 @@ public class Client {
 
                 // Получение ответа
                 Response response = (Response) in.readObject();
-                System.out.println("Ответ сервера: " + response.message());
+                System.out.println(response.message());
             }
 
         } catch (IOException e) {
