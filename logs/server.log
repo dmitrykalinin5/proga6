@@ -1,0 +1,4 @@
+2025-04-08 13:44:33 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 13:44:35 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 13:44:45 [Thread-0] INFO  Console.Server - Команда без аргумента выполнена
+2025-04-08 13:44:45 [Thread-0] INFO  Console.Server - Команда выполнена, ответ отправлен клиенту

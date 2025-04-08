@@ -2,7 +2,7 @@
   <artifact type="jar" name="proga5:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/proga5_jar</output-path>
     <root id="archive" name="proga5.jar">
-      <element id="module-output" name="proga5" />
+      <element id="module-output" name="proga6" />
     </root>
   </artifact>
 </component>

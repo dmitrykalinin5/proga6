@@ -54,7 +54,6 @@ public class Server {
                                 responseText = ("Элемент добавлен в коллекцию");
                             } else {
                                 responseText = commandProcessor.executeCommand(command);
-                                logger.info("Команда без аргумента выполнена");
                             }
 
                             out.writeObject(new Response(responseText));
@@ -66,9 +65,7 @@ public class Server {
                             }
                         }
 
-                        logger.info("Команда выполнена, ответ отправлен клиенту");
-
-
+                        logger.info("Ответ отправлен клиенту");
                     }
                 } catch (EOFException | SocketException e) {
                     logger.error("Клиент отключился");

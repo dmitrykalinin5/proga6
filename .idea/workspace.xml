@@ -10,18 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="-">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/log4j_api_2_20_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/log4j_core_2_20_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/proga5_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/proga5_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/collection.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proga5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/proga5.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ExecuteScriptCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proga5.iml" beforeDir="false" afterPath="$PROJECT_DIR$/proga6.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/third.txt" beforeDir="false" afterPath="$PROJECT_DIR$/third.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +38,12 @@
     &quot;assignee&quot;: &quot;dmitrykalinin5&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/dmitrykalinin5/proga6.git",
-    "accountId": "92e12615-017d-40b7-b95f-4c2d026e6316"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dmitrykalinin5/proga6.git&quot;,
+    &quot;accountId&quot;: &quot;92e12615-017d-40b7-b95f-4c2d026e6316&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -80,7 +73,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
@@ -95,7 +88,7 @@
   <component name="RunManager" selected="Application.run client">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Console.Server" />
-      <module name="proga5" />
+      <module name="proga6" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Console.*" />
@@ -108,7 +101,7 @@
     </configuration>
     <configuration name="run client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Console.Client" />
-      <module name="proga5" />
+      <module name="proga6" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,6 +157,7 @@
       <workItem from="1743419867980" duration="3322000" />
       <workItem from="1743940309712" duration="31260000" />
       <workItem from="1744099435529" duration="7187000" />
+      <workItem from="1744108970108" duration="166000" />
     </task>
     <task id="LOCAL-00001" summary="Новая команда">
       <option name="closed" value="true" />
