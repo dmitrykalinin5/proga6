@@ -1,11 +1,13 @@
 package Collections;
 
+import java.io.Serializable;
+
 /**
  * Класс, представляющий расположение в трехмерном пространстве.
  * Содержит три поля: координату по оси X, координату по оси Y и координату по оси Z.
  * Поле Z не может быть равно null.
  */
-public class Location {
+public class Location implements Serializable {
     private long x;
     private double y;
     private Float z; //Поле не может быть null

@@ -48,12 +48,9 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        int newId;
-        try {
-            newId = collectionManager.getNextId();
-        } catch (NullPointerException e) {
-            newId = 1;
-        }
+        CollectionManager collectionManager = new CollectionManager();
+        collectionManager.loadFromFile();
+        int newId = collectionManager.getNextId();
 
         try {
             System.out.print("Введите ваше имя: ");
@@ -119,15 +116,14 @@ public class AddCommand implements Command {
             Person person = new Person(birthday, height, weight, location);
             this.ticket = new Ticket(newId, name, coordinates, date, price, ticketType, person);
 
-            getResult();
-
 //            this.collectionManager.getQueue().add(ticket);
         } catch (NumberFormatException e) {
             response("Некорректный ввод: " + e.getMessage());
         }
     }
 
-    public Ticket getResult() {
+    @Override
+    public Ticket getTicket() {
         return this.ticket;
     }
 

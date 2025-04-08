@@ -188,7 +188,6 @@ public class CollectionManager {
                 }
             }
             lastId = id;
-            System.out.println("Файл успешно загружен!");
         } catch (IOException exception) {
             System.err.println("Ошибка чтения файла: " + exception.getMessage());
         } catch (Exception exception) {

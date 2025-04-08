@@ -1,10 +1,12 @@
 package Collections;
 
+import java.io.Serializable;
+
 /**
  * Класс, представляющий координаты в двухмерном пространстве.
  * Содержит два поля: целочисленную координату по оси X и вещественную координату по оси Y.
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
     private final int x;
     private final double y;
 

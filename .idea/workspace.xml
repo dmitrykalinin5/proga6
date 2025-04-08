@@ -9,28 +9,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="--">
-      <change afterPath="$PROJECT_DIR$/src/Network/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Network/Response.java" afterDir="false" />
+    <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="-">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/collection.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Collections/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/CollectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Collections/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Collections/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Collections/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Collections/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collections/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ExecuteScriptCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/ExitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ExitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/GroupCountingByPersonCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/GroupCountingByPersonCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/HelpCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/HistoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/HistoryCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/InfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/MinByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/MinByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveAllByPriceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveAllByPriceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/RemoveFirstCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveFirstCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/RemoveHeadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/RemoveHeadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ShowCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UpdateIdCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/BirthdayValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/BirthdayValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/HeightValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/HeightValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/LocationValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/LocationValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/NameValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/NameValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/PriceValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/PriceValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/TicketTypeValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/TicketTypeValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/WeightValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/WeightValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/XCoordinateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/XCoordinateValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validaters/YCoordinateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validaters/YCoordinateValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Network/Request.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +61,12 @@
     &quot;assignee&quot;: &quot;dmitrykalinin5&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/dmitrykalinin5/proga6.git&quot;,
-    &quot;accountId&quot;: &quot;ba8b7fa5-9765-40bf-b48c-ea04d23b2081&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/dmitrykalinin5/proga6.git",
+    "accountId": "92e12615-017d-40b7-b95f-4c2d026e6316"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -71,30 +78,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Application.run client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.run server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.run client.executor": "Run",
+    "Application.run server.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kotuk\IdeaProjects\proga5new" />
@@ -121,13 +128,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="run server" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="proga5" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="proga6" />
       <method v="2">
@@ -141,7 +141,6 @@
     </configuration>
     <list>
       <item itemvalue="Application.run client" />
-      <item itemvalue="Application.run server" />
       <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
@@ -153,8 +152,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
       </set>
     </attachedChunks>
   </component>
@@ -179,6 +178,7 @@
       <workItem from="1743419627847" duration="231000" />
       <workItem from="1743419867980" duration="3322000" />
       <workItem from="1743940309712" duration="31260000" />
+      <workItem from="1744099435529" duration="4235000" />
     </task>
     <task id="LOCAL-00001" summary="Новая команда">
       <option name="closed" value="true" />
@@ -436,7 +436,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743976310588</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="-">
+      <option name="closed" value="true" />
+      <created>1744066158775</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1744066158775</updated>
+    </task>
+    <task id="LOCAL-00034" summary="-">
+      <option name="closed" value="true" />
+      <created>1744066162592</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1744066162592</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,9 +488,9 @@
     <MESSAGE value="Все было изменено так, чтобы работал execute_script" />
     <MESSAGE value="реализован GroupCountingByPersonCommand" />
     <MESSAGE value="javadoc" />
-    <MESSAGE value="-" />
     <MESSAGE value="--" />
-    <option name="LAST_COMMIT_MESSAGE" value="--" />
+    <MESSAGE value="-" />
+    <option name="LAST_COMMIT_MESSAGE" value="-" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -47,6 +47,9 @@ public class RemoveByIdCommand implements Command {
     }
 
     @Override
+    public Object getTicket() { return null; }
+
+    @Override
     public void response(String result) {
         this.result = result;
     }

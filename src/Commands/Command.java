@@ -15,6 +15,8 @@ public interface Command {
      */
     void execute(String[] args);
 
+    Object getTicket();
+
     void response(String result);
 
     String getResponse();

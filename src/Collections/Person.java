@@ -1,5 +1,6 @@
 package Collections;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 import Validaters.PersonValidator;
 
@@ -13,7 +14,7 @@ import Validaters.PersonValidator;
  * - weight должно быть больше 0.
  * Поле location может быть null.
  */
-public class Person {
+public class Person implements Serializable {
     private ZonedDateTime birthday; //Поле не может быть null
     private Long height; //Поле не может быть null, Значение поля должно быть больше 0
     private int weight; //Значение поля должно быть больше 0

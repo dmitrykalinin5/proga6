@@ -53,7 +53,7 @@ public class CommandProcessor {
             commands.put("history", new HistoryCommand(this));
             commands.put("min_by_id", new MinByIdCommand(collectionManager));
             commands.put("group_counting_by_person", new GroupCountingByPersonCommand(collectionManager));
-            commands.put("save", new SaveCommand(collectionManager));
+
             commands.put("exit", new ExitCommand(this));
 
             // Команды с аргументами
@@ -63,6 +63,10 @@ public class CommandProcessor {
             commands.put("execute_script", new ExecuteScriptCommand(this));
             commands.put("remove_all_by_price", new RemoveAllByPriceCommand(collectionManager));
         }
+    }
+
+    public void ServerCommandPut() {
+        commands.put("save", new SaveCommand(collectionManager));
     }
 
     public void executeScript() {
@@ -78,16 +82,31 @@ public class CommandProcessor {
         }
     }
 
-    public void executeCommand(String input) {
+    public String executeCommand(String input) {
         String[] parts = input.split(" ");
         String commandName = parts[0];
         Command command = commands.get(commandName);
         try {
             command.execute(parts);
             saveCommand(parts[0]);
+            return command.getResponse();
         } catch (NullPointerException exception) {
-            System.out.println("Некорректный ввод" + exception.getMessage());
+            return "Некорректный ввод " + exception.getMessage();
         }
+    }
+
+    public Object executeArgumentCommand(String input) {
+        String[] parts = input.split(" ");
+        String commandName = parts[0];
+        Command command = commands.get(commandName);
+        try {
+            command.execute(parts);
+            saveCommand(parts[0]);
+            return command.getTicket();
+        } catch (NullPointerException exception) {
+            System.out.println("Некорректный ввод 2 " + exception.getMessage());
+        }
+        return null;
     }
 
     public Command getCommand(String commandName) {
@@ -111,7 +130,9 @@ public class CommandProcessor {
         return new BufferedInputStream(in);
     }
 
-    public boolean isClientCommand(String commandName) {
+    public boolean isClientCommand(String input) {
+        String[] parts = input.split(" ");
+        String commandName = parts[0];
         return commands.containsKey(commandName);
     }
 

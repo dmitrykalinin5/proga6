@@ -26,6 +26,7 @@ public class UpdateIdCommand implements Command {
     private PriorityQueue<Ticket> queue;
     private String result;
     private Scanner scanner;
+    private Ticket ticket;
 
     /**
      * Конструктор для создания объекта UpdateIdCommand.
@@ -175,6 +176,9 @@ public class UpdateIdCommand implements Command {
         }
         return false;
     }
+
+    @Override
+    public Object getTicket() { return null; }
 
     @Override
     public void response(String result) {

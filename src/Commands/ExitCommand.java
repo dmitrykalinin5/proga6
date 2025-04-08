@@ -23,10 +23,13 @@ public class ExitCommand implements Command {
      */
     @Override
     public void execute(String[] args) {
-        this.commandProcessor.CommandPut();
+        this.commandProcessor.ServerCommandPut();
         this.commandProcessor.executeCommand("save");
         response("Завершение программы..");
     }
+
+    @Override
+    public Object getTicket() { return null; }
 
     @Override
     public void response(String result) {

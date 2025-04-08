@@ -1,6 +1,7 @@
 package Console;
 
 import Collections.CollectionManager;
+import Collections.Ticket;
 import Commands.CommandProcessor;
 
 import java.io.*;
@@ -31,34 +32,33 @@ public class Client {
 
         try (Socket socket = new Socket("localhost", 5000);
              ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-             Scanner scanner = new Scanner(System.in)) {
+             ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
             while (true) {
                 System.out.print("Введите команду: ");
                 String input = userInput();
+                Request request;
 
                 if (input.equals("exit")) {
-                    System.out.println("Завершение клиента...");
+                    request = new Request("exit", null);
+                    out.writeObject(request);
+                    out.flush();
+                    Response response = (Response) in.readObject();
+                    System.out.println(response.message());
                     System.exit(0);
                 }
 
                 // Парсишь команду, можешь использовать CommandProcessor, если хочешь
                 // Здесь формируем объект Request
 
-                Request request;
-                if (commandProcessor.isClientCommand(input)) {
-                    Object argument = null;
-                    if (input.equals("add")) {
-                        AddCommand addCommand = (AddCommand) commandProcessor.getCommand("add");
-                        argument = addCommand.getResult(); // получаем ticket
-                    }
-                    System.out.println("выполнено");
-                    request = new Request(input, argument);
-                } else {
-                    request = new Request(input, null); // Пока без аргумента
-                }
 
+                Ticket argument = null;
+                if (commandProcessor.isClientCommand(input)) {
+                    argument = (Ticket) commandProcessor.executeArgumentCommand(input);
+                    System.out.println("выполнено arg");
+                }
+                System.out.println("выполнено просто");
+                request = new Request(input, argument);
 
                 // Отправка запроса на сервер
                 out.writeObject(request);

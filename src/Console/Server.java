@@ -1,6 +1,7 @@
 package Console;
 
 import Collections.CollectionManager;
+import Collections.Ticket;
 import Commands.CommandProcessor;
 import Network.Request;
 import Network.Response;
@@ -38,16 +39,26 @@ public class Server {
 
                     System.out.println("Клиент подключен");
 
+                    String responseText;
                     while (true) {
                         Object obj = in.readObject(); // 🟡 Блокирующий вызов: ждет объект от клиента
                         if (obj instanceof Request request) {
                             String command = request.commandName();
-                            Object argument = request.argument();
+                            Ticket argument = request.argument();
 
-                            System.out.println("Получена команда: " + command);
+                            if (argument != null) {
+                                collectionManager.getQueue().add(argument);
+                                System.out.println("Элемент добавлен в коллекцию");
+                                responseText = "Все гуд";
+                            } else {
+                                responseText = commandProcessor.executeCommand(command);
+                                System.out.println("Команда без аргумента выполнена");
+                            }
+
+//                            System.out.println("Получена команда: " + command);
 
                             // Тут логика обработки
-                            String responseText = "Команда принята: " + command;
+//                            String responseText = "Команда принята: " + command;
 
                             out.writeObject(new Response(responseText));
                             out.flush();
@@ -55,9 +66,10 @@ public class Server {
 
                         System.out.println("Команда выполнена, ответ отправлен клиенту");
 
-                        System.out.println("Клиент отключился");
+
                     }
                 } catch (ClassNotFoundException | IOException e) {
+                    System.out.println("Клиент отключился");
                     throw new RuntimeException(e);
                 }
             }
