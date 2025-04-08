@@ -2,3 +2,13 @@
 2025-04-08 13:44:35 [Thread-0] INFO  Console.Server - Клиент подключен
 2025-04-08 13:44:45 [Thread-0] INFO  Console.Server - Команда без аргумента выполнена
 2025-04-08 13:44:45 [Thread-0] INFO  Console.Server - Команда выполнена, ответ отправлен клиенту
+2025-04-08 13:45:59 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 13:46:01 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 13:46:08 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 13:46:15 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 13:46:49 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 13:46:54 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 13:47:24 [Thread-0] INFO  Console.Server - Клиент завершил сессию командой exit
+2025-04-08 13:47:46 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 13:47:48 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 13:47:51 [Thread-0] INFO  Console.Server - Клиент завершил сессию командой exit
