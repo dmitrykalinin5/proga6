@@ -68,7 +68,7 @@ public class Client {
             }
 
         } catch (IOException e) {
-            System.err.println("Ошибка: " + e.getMessage());
+            System.err.println("Некорректный ввод");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

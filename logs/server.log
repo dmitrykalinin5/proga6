@@ -12,3 +12,14 @@
 2025-04-08 13:47:46 [Thread-0] INFO  Console.Server - Клиент подключен
 2025-04-08 13:47:48 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
 2025-04-08 13:47:51 [Thread-0] INFO  Console.Server - Клиент завершил сессию командой exit
+2025-04-08 14:07:26 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 14:07:30 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 14:07:43 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 14:08:59 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 14:09:03 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 14:09:38 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 14:09:42 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 14:10:41 [Thread-0] INFO  Console.Server - Сервер запущен
+2025-04-08 14:10:44 [Thread-0] INFO  Console.Server - Клиент подключен
+2025-04-08 14:10:47 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту
+2025-04-08 14:10:51 [Thread-0] INFO  Console.Server - Ответ отправлен клиенту

@@ -35,9 +35,9 @@ public class RemoveByIdCommand implements Command {
                 }
             }
             if (isRemoved) {
-                System.out.println("Removed " + id + " from the collection");
+                response("Removed " + id + " from the collection");
             } else {
-                System.out.println("Could not remove " + id + " from the collection");
+                response("Could not remove " + id + " from the collection");
             }
         } catch (NumberFormatException e) {
             System.out.println("id должно быть числом");
