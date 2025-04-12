@@ -9,67 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="--">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Server_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Client.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Common.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/Commands/AddCommandClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/proga6_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Client_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c365440e-0263-4dbb-9594-c410534a38bd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c365440e-0263-4dbb-9594-c410534a38bd/storage_v2/_src_/database/studs.ww2LBg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c365440e-0263-4dbb-9594-c410534a38bd/storage_v2/_src_/database/studs.ww2LBg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c365440e-0263-4dbb-9594-c410534a38bd/storage_v2/_src_/database/studs.ww2LBg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Client.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Client.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Common.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Common.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Server.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Server.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Client/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Client/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Client/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Client/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Network/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Network/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/BirthdayValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/BirthdayValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/CoordinatesValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/CoordinatesValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/CreationDateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/CreationDateValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/HeightValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/HeightValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/IdValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/IdValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/LocationValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/LocationValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/NameValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/NameValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/PersonValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/PersonValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/PriceValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/PriceValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/TicketTypeValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/TicketTypeValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/WeightValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/WeightValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/XCoordinateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/XCoordinateValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Validaters/YCoordinateValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Validaters/YCoordinateValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Common/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/.gradle/8.10/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Common/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/.gradle/8.10/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Common/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Common/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Common/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Common/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/src/main/java/org/example/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/8.10/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/8.10/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/8.10/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/8.10/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/8.10/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/8.10/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/8.10/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/8.10/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/8.10/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Server/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Server/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Collections/CollectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Collections/CollectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Collections/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Collections/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Collections/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Collections/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Commands/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Commands/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Commands/UpdateIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Console/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/Console/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/Network/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/Common/src/main/java/Network/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Server/logs/server.log" afterDir="false" />
-    </list>
+    <list default="true" id="b6533075-f0e9-4a7e-b37e-7ae7cfe91278" name="Changes" comment="--" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -232,7 +172,7 @@
       <workItem from="1744099435529" duration="7187000" />
       <workItem from="1744108970108" duration="527000" />
       <workItem from="1744370078812" duration="3663000" />
-      <workItem from="1744454250186" duration="33000" />
+      <workItem from="1744454250186" duration="340000" />
     </task>
     <task id="LOCAL-00001" summary="Новая команда">
       <option name="closed" value="true" />
@@ -546,7 +486,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744111965569</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="--">
+      <option name="closed" value="true" />
+      <created>1744454327018</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1744454327018</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
