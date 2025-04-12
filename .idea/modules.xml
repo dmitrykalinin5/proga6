@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Client.iml" filepath="$PROJECT_DIR$/Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Client.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Client.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/Common.iml" filepath="$PROJECT_DIR$/Common.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Common.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/Server.iml" filepath="$PROJECT_DIR$/Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Server.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Server.test.iml" />

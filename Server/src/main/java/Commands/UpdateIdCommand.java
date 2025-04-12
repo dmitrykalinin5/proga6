@@ -1,12 +1,14 @@
 package Commands;
 
-import Console.Client;
-
+import Collections.CollectionManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import Collections.Ticket;
+
+//import common.src.main.java.Validaters.*;
 
 /**
  * Команда для обновления элемента коллекции по его id.

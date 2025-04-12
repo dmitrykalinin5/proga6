@@ -1,0 +1,13 @@
+Index: src/resources/META-INF/MANIFEST.MF
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Manifest-Version: 1.0\r\nMain-Class: Console.Server\r\n\r\n
+===================================================================
+diff --git a/src/resources/META-INF/MANIFEST.MF b/src/resources/META-INF/MANIFEST.MF
+--- a/src/resources/META-INF/MANIFEST.MF	(revision a7139ef84d1c9b2880df586e65e9a0120084ca7a)
++++ b/src/resources/META-INF/MANIFEST.MF	(date 1744114704607)
+@@ -1,3 +1,3 @@
+ Manifest-Version: 1.0
+-Main-Class: Console.Server
++Main-Class: Console.Client
+ 

@@ -2,7 +2,6 @@ package Collections;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import Validaters.PersonValidator;
 
 /**
  * Класс, представляющий данные о человеке.
@@ -29,8 +28,8 @@ public class Person implements Serializable {
      * @param location Локация (x, y, z) (может быть null)
      */
     public Person(java.time.ZonedDateTime birthday, Long height, int weight, Location location) {
-        PersonValidator personvalidator = new PersonValidator(birthday, height, weight);
-        personvalidator.validateOrThrow();
+//        PersonValidator personvalidator = new PersonValidator(birthday, height, weight);
+//        personvalidator.validateOrThrow();
 
         this.birthday = birthday;
         this.height = height;

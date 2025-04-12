@@ -7,7 +7,9 @@
       <sourceFolder url="file://$MODULE_DIR$/../../Common/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../Common/src/main/resources" type="java-resource" />
     </content>
-    <orderEntry type="jdk" jdkName="corretto-17" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-core:2.24.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:2.24.3" level="project" />
   </component>
 </module>

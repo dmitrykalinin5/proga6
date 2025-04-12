@@ -6,8 +6,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.io.*;
 
-import Console.Client;
-
 /**
  * Класс для управления коллекцией
  */
