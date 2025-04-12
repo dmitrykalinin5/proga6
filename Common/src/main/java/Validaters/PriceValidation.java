@@ -1,7 +1,6 @@
 package Validaters;
 
 import Tools.Validation;
-import Console.Client;
 
 import java.util.Scanner;
 

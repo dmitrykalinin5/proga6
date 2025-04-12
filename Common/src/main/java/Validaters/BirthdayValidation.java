@@ -1,6 +1,5 @@
 package Validaters;
 
-import Commands.CommandProcessor;
 import Tools.Validation;
 
 import java.util.Arrays;

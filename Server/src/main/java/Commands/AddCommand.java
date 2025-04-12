@@ -1,7 +1,5 @@
 package Commands;
 
-import Console.Client;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -9,6 +7,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import Collections.CollectionManager;
+import Collections.*;
+import Validaters.*;
 
 /**
  * Команда для добавления нового элемента в коллекцию.
@@ -22,12 +22,6 @@ public class AddCommand implements Command {
     private Ticket ticket;
     private final Scanner scanner = new Scanner(System.in);
 
-    /**
-     * Конструктор для создания команды добавления элемента.
-     *
-     * @param collectionManager Менеджер коллекции, в которую будет добавлен элемент
-     * @param commandProcessor Обработчик команд
-     */
     public AddCommand(CollectionManager collectionManager, CommandProcessor commandProcessor) {
         this.collectionManager = collectionManager;
         this.commandProcessor = commandProcessor;

@@ -47,7 +47,7 @@ public class Server {
                         Object obj = in.readObject();
                         if (obj instanceof Request request) {
                             String command = request.commandName();
-                            Ticket argument = request.argument();
+                            Ticket argument = (Ticket) request.argument();
 
                             if (argument != null) {
                                 collectionManager.getQueue().add(argument);

@@ -1,7 +1,5 @@
 package Collections;
 
-import Commands.CommandProcessor;
-
 import java.time.LocalDateTime;
 import java.util.*;
 import java.io.*;
@@ -13,14 +11,9 @@ public class CollectionManager {
     private final PriorityQueue<Ticket> queue = new PriorityQueue<>(Comparator.comparing(Ticket::getId));
     private final LocalDateTime creationTime;
     private int lastId = 0;
-    private CommandProcessor commandProcessor;
 
     public CollectionManager() {
         this.creationTime = LocalDateTime.now();
-    }
-
-    public void setCommandProcessor(CommandProcessor commandProcessor) {
-        this.commandProcessor = commandProcessor;
     }
 
     /**

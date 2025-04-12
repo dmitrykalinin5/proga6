@@ -2,7 +2,6 @@ package Validaters;
 
 import Tools.Validation;
 import Collections.TicketType;
-import Console.Client;
 
 import java.util.Scanner;
 
